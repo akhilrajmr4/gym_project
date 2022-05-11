@@ -1,0 +1,150 @@
+{%extends 'SuperAdmin_index.html'%}
+{%load static%}
+{%block content%}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+        <div class="row">
+            <div class="col-lg-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="fs-30 mb-4">Update</h4>
+
+                        <form class="forms-sample pt-1"
+                            action="{% url 'SuperAdmin_activetrainer_update_save' trainer.id %}" method="post"
+                            enctype="multipart/form-data">
+                            {% csrf_token%}
+                            <div class="form-group row">
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="name" class="form-control" id="exampleInputUsername2"
+                                        value="{{trainer.fullname}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputEmail2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">Email</label>
+                                <div class="col-sm-9">
+                                    <input type="email" name="em" class="form-control" id="exampleInputEmail2"
+                                        value="{{trainer.email}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputMobile" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">Phone no</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="phno" class="form-control" id="exampleInputMobile"
+                                        value="{{trainer.mobile}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputPassword2" class="col-sm-3 col-form-label "
+                                    style="font-size: 17px;">Date of Birth</label>
+                                <div class="col-sm-9">
+                                    <input type="date" name="dob" class="form-control txtDate"
+                                        id="exampleInputPassword2" value="{{trainer.dateofbirth|date:'Y-m-d'}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">Joining date</label>
+                                <div class="col-sm-9">
+                                    <input type="date" name="ag" class="form-control"
+                                        id="exampleInputConfirmPassword2" value="{{trainer.joiningdate|date:'Y-m-d'}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">Height</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="ht" class="form-control"
+                                        id="exampleInputConfirmPassword2" value="{{trainer.height}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">Weight</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="wt" class="form-control"
+                                        id="exampleInputConfirmPassword2" value="{{trainer.weight}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">
+                                    Address
+                                    1</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="ad1" class="form-control" id="exampleInputConfirmPassword2"
+                                        value="{{trainer.permanentaddress1}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">
+                                    Address
+                                    2</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="ad2" class="form-control" id="exampleInputConfirmPassword2"
+                                        value="{{trainer.permanentaddress1}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label"
+                                    style="font-size: 17px;">
+                                    Address
+                                    3</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="ad3" class="form-control" id="exampleInputConfirmPassword2"
+                                        value="{{trainer.permanentaddress1}}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label" style="font-size: 17px;">File upload</label>
+                                <div class="col-sm-9">
+                                    <input type="file" name="pic" class="file-upload-default">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control file-upload-info" disabled
+                                            placeholder="{{trainer.photo}}">
+                                        <span class="input-group-append">
+                                            <button class="file-upload-browse btn btn-primary"
+                                                type="button">Upload</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    
+
+<script>
+    $(function () {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('.txtDate').attr('max', maxDate);
+    })
+</script>
+
+
+{% endblock %}

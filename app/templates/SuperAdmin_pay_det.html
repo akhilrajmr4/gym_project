@@ -1,0 +1,46 @@
+{%extends 'SuperAdmin_index.html'%}
+{%load static%}
+{%block content%}
+
+
+      <div class="row">
+        <div class="col-md-12 grid-margin">
+          <div class="row">
+            <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+              <h3 class="font-weight-bold">Payment</h3>
+              
+            </div>
+         
+          </div>
+        </div>
+      </div>
+   
+          <div class="row">
+            <div class="col-md-4 mb-4 stretch-card transparent">
+                <a href="{% url 'SuperAdmin_current_trainees' %}" class="text-decoration-none text-white">
+              <div class="card" style="background-color:rgb(133, 255, 133)">
+                <div class="card-body">
+                  <h4 class="my-3">Current Trainees</h4>
+                  <p class="fs-30 mb-4">{{count}}</p>
+                  
+                </div>
+            </a>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4 stretch-card transparent">
+              <div class="card " style="background-color: rgb(231, 104, 104);">
+                <a href="{% url 'SuperAdmin_previous_trainees_payment' %}" class="text-decoration-none text-white">
+                <div class="card-body">
+                  <h4 class="my-3">Previous Trainees</h4>
+                  <p class="fs-30 mb-4">{{count2}}</p> 
+                 
+                </div>
+           </a>
+              </div>
+            </div>
+          </div>
+          
+  
+
+
+{% endblock %}

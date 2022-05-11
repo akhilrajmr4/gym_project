@@ -1,0 +1,46 @@
+{% extends 'SuperAdmin_index.html'%}
+{% block content %}
+{% load static %}
+<div class="row ">
+</div>
+<div class="row">
+  <div class="col-md-9 grid-margin transparent">
+      <div class="row">
+        <div class="col-md-4 mb-4 stretch-card transparent" style="height: 130px;">
+          <div class="card card-tale">
+              <a href="{% url 'superadmin_addworkout' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              
+              <h4 class="mb-4 mt-4 mr-3 ml-3">Add workout</h4>
+              <p></p>
+            </div>
+          </a>
+          </div>
+          
+        </div>
+        <div class="col-md-4 mb-4 stretch-card transparent">
+          <div class="card card-dark-blue">
+              <a href="{% url 'superadmin_tutorialpage' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              <h4 class="mb-4 mt-4 mr-3 ml-3">Add Tutorial</h4>
+              <p></p>
+            </div>
+          </a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 stretch-card transparent">
+          <div class="card" style="background-color: rgb(109, 255, 163);">
+              <a href="{% url 'superadmin_viewworkout' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              <h4 class="mb-4 mt-4 mr-3 ml-3">View workout</h4>
+              <p></p>
+            </div>
+          </a>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+</div>
+
+{% endblock %}

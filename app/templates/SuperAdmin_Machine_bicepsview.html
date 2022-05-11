@@ -1,0 +1,68 @@
+{% extends 'SuperAdmin_index.html'%} {% load static %} {% block content %}
+
+<head>
+  <link rel='stylesheet' id='bootstrap-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/bootstrap/css/bootstrap.min.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='bootstrapstarter-style-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/style.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='singleproductcss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/singleproduct.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='bootstrap-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/bootstrap/css/bootstrap.min.css?ver=5.7.6' type='text/css' media='all' />
+  <script type='text/javascript' src='https://www.bootstrapdash.com/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>
+</head>
+
+<div id="primary" class="content-area"><main id="main" class="site-main" role="main">
+    
+    <div class="woocommerce-notices-wrapper"></div><div class="container-fluid bd-single-product-page">
+{% for i in cat %}      
+<div class="container my-5">
+<div id="product-39413" class="product type-product post-39413 status-publish first instock product_cat-admin-dashboards product_cat-free-bootstrap-admin-templates has-post-thumbnail sold-individually shipping-taxable product-type-external">
+
+<p class="d-none">39413</p><div class="wrap_image_summary "><div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 0; transition: opacity .25s ease-in-out;">
+<figure class="woocommerce-product-gallery__wrapper">
+  <a href="#"><img src="{{ i.machine_image.url }}" alt="Skydash - Free" class="bd-detail-image" /></a>  </figure>
+</div>
+
+<div class="summary entry-summary">
+  <h1 class="product_title entry-title">{{i.machine_name}}</h1><div class="woocommerce-product-details__short-description">
+<p><span style="font-weight: 400;">{{i.machine_description}}</span></p>
+</div>
+
+  
+</main>
+{%endfor %}
+
+<div class="cli-modal-backdrop cli-fade cli-settings-overlay"></div>
+<div class="cli-modal-backdrop cli-fade cli-popupbar-overlay"></div>
+<!--googleon: all--></div>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-includes/js/thickbox/thickbox.js?ver=3.1-20121105' id='thickbox-js'></script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-includes/js/comment-reply.min.js?ver=5.7.6' id='comment-reply-js'></script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill.min.js?ver=7.4.4' id='wp-polyfill-js'></script>
+<script type='text/javascript' id='wp-polyfill-js-after'>
+( 'fetch' in window ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-fetch.min.js?ver=3.0.0"></scr' + 'ipt>' );( document.contains ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-node-contains.min.js?ver=3.42.0"></scr' + 'ipt>' );( window.DOMRect ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-dom-rect.min.js?ver=3.42.0"></scr' + 'ipt>' );( window.URL && window.URL.prototype && window.URLSearchParams ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-url.min.js?ver=3.6.4"></scr' + 'ipt>' );( window.FormData && window.FormData.prototype.keys ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-formdata.min.js?ver=3.0.12"></scr' + 'ipt>' );( Element.prototype.matches && Element.prototype.closest ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-element-closest.min.js?ver=2.0.2"></scr' + 'ipt>' );( 'objectFit' in document.documentElement.style ) || document.write( '<script src="https://www.bootstrapdash.com/wp-includes/js/dist/vendor/wp-polyfill-object-fit.min.js?ver=2.3.4"></scr' + 'ipt>' );
+</script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/www.bootstrapdash.com\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=5.4.1' id='contact-form-7-js'></script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.70' id='jquery-blockui-js'></script>
+<script type='text/javascript' id='wc-add-to-cart-js-extra'>
+/* <![CDATA[ */
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/www.bootstrapdash.com\/checkout\/","is_cart":"","cart_redirect_after_add":"yes"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=5.4.4' id='wc-add-to-cart-js'></script>
+<script type='text/javascript' id='wc-single-product-js-extra'>
+/* <![CDATA[ */
+var wc_single_product_params = {"i18n_required_rating_text":"Please select a rating","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":"thumbnails","slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"","zoom_options":[],"photoswipe_enabled":"","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js?ver=5.4.4' id='wc-single-product-js'></script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4' id='js-cookie-js'></script>
+<script type='text/javascript' id='woocommerce-js-extra'>
+/* <![CDATA[ */
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=5.4.4' id='woocommerce-js'></script>
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'SuperAdmin_index.html' %}
+{% load static %}
+{% block content %}
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<style>
+#tble{
+  margin-bottom: 5px;
+  color: white; 
+  border-color: white;
+  
+  width: 100%;
+  display: none;
+}
+  
+</style>
+
+<body>
+  <div class="row ">   
+      <h2><small style="color: blueviolet; margin-left: 15px;">Find Expenses </small></h2>   
+  </div>
+    <div class="row">   
+        <div class="col-12 col-sm-10 col-md-10 col-lg-12 grid-margin">
+          <div class="card mt-3 mb-5">
+            <div class="card-body">
+              <div class="card-body" id="personForm">   
+                <form class="forms-sample" action="{% url 'SuperAdmin_FindExpense_Show'%}" method="post">
+                  {% csrf_token %}       
+                  <div class="col-lg-12">
+                    <label class="text-muted">SELECT FROM DATE</label>
+                    <input type="date" class="form-control"  id="startdate" name="startdate" required/>
+                  </div>
+                  <div class="col-lg-12 mt-3">
+                    <label class="text-muted">SELECT TO DATE</label>
+                    <input type="date" class="form-control" id="enddate" name="enddate" required />
+                  </div>
+                  <div class="row">
+                  <div class="col-lg-9"></div>
+                  <div class="col-lg-3 mt-3">
+                    <button id="btnSearch" type="submit" class="btn btn-primary w-100" >Search</button>
+                  </div>
+                </form>
+              </div>   
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+  
+<!-- <script>
+  $(function () {
+    $("#txtFrom").datepicker({
+      minDate: new Date(2022, 2 - 1, 1)
+    });
+  });
+  $(function () {
+    $("#txtTo").datepicker({
+       maxDate: new Date(2022, 3 - 1, 1)
+    });
+  });
+</script> -->
+
+    </body>
+
+    <script>
+      $(function() {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#startdate').attr('max', maxDate);
+      })
+    </script>
+    <script>
+      $(function() {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var maxDate = year + '-' + month + '-' + day;
+        $('#enddate').attr('max', maxDate);
+      })
+    </script>
+{% endblock %}

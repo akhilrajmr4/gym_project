@@ -1,0 +1,70 @@
+{%extends 'SuperAdmin_index.html'%}
+{%load static%}
+{%block content%}
+
+
+
+
+
+
+      
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Payment Update</h4>
+             
+                  <form action="{% url 'SuperAdmin_current_trainees_payment_edit' mem2.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token%}
+          
+                    <div class="form-group">
+                      <label>Bank Name</label>
+                      <input type="text" class="form-control form-control-sm" name="bankname" value="{{mem2.bank}}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>Account Number</label>
+                      <input type="text" class="form-control form-control-sm" name="accnumber" value="{{mem2.accountnumber}}" required>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputEmail4">IFSC Code</label>
+                        <input type="text" class="form-control" name="ifsecode" value="{{mem2.ifse}}" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputPassword4">Amount</label>
+                        <input type="text" class="form-control" name="amount" value="{{mem2.payment}}" required>
+                      </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Add Payment</button>
+                </div>
+              </div>
+              </form>
+              
+                </div>
+              </div>
+            
+
+
+            
+            <script>
+              $(function() {
+                  var dtToday = new Date();
+                  var month = dtToday.getMonth() + 1;
+                  var day = dtToday.getDate();
+                  var year = dtToday.getFullYear();
+                  if (month < 10)
+                      month = '0' + month.toString();
+                  if (day < 10)
+                      day = '0' + day.toString();
+                  var maxDate = year + '-' + month + '-' + day;
+                  $('.txtDate').attr('max', maxDate);
+          
+              })
+          </script>
+      
+
+
+{% endblock %}

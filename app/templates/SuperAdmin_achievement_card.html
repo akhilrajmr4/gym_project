@@ -1,0 +1,34 @@
+{% extends 'SuperAdmin_index.html'%}
+{% block content %}
+{% load static %}
+<div class="row ">
+</div>
+<div class="row">
+  <div class="col-md-7 grid-margin transparent">
+      <div class="row">
+        <div class="col-md-6 mb-4 stretch-card transparent" style="height: 17vh;">
+          <div class="card card-tale">
+              <a href="{% url 'SuperAdmin_achievements_add_achievements' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              
+              <h4 class="mb-4 mt-4 mr-3 ml-3">Add Achievements</h4>
+            </div>
+          </a>
+          </div>
+          
+        </div>
+        <div class="col-md-6 mb-4 stretch-card transparent">
+          <div class="card card-dark-blue">
+              <a href="{% url 'SuperAdmin_achievements_view_achievements' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              <h4 class="mb-4 mt-4 mr-3 ml-3">View Achievements</h4>
+        
+            </div>
+          </a>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+</div>
+{% endblock %}

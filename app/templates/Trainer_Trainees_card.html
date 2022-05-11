@@ -1,0 +1,28 @@
+{% extends 'Trainer_index.html'%}
+{% load static %}
+{% block content %}
+
+
+<div class="row">
+    <div class="col-md-4 mb-4 col-lg-4 col-sm-4" >
+     <a href="{% url 'Trainer_Current_Trainees_table' %}"style="text-decoration: none;"><div class="card card-tale" style="border-radius:20px;background-color:#98FB98;text-decoration: none;	">
+        <div class="card-body" >
+          <h4 class="mb-4 ml-5">Current</h4>
+          <p class="fs-30 mb-2 ml-5">{{Act_count}}</p>
+        </div>
+        </div></a> 
+      </div>
+      <div class="col-md-4 mb-4 col-lg-4 col-sm-4" >
+        <a href="{% url 'Trainer_Previous_Trainees_table' %}" style="text-decoration: none;">  <div class="card card-tale" style="border-radius:20px;background-color: #FA989A;text-decoration: none;">
+          <div class="card-body">
+            <h4 class="mb-4 pl-5">Previous</h4>
+            <p class="fs-30 mb-2 ml-5">{{Res_count}}</p>
+           
+          </div>
+        </div></a> 
+    </div>
+    
+</div>
+
+
+{% endblock %}

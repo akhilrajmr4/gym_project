@@ -1,0 +1,24 @@
+{% extends 'Trainee_index.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<h2 style="color: blueviolet;"><b>Workout</b></h2>
+
+<div class="row">
+  {% for i in data %}
+  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 pb-3 pt-3">
+   
+      <div class="">
+        <video class="img-responsive w-100 " controls="controls" style="border-radius: 10px; height:300px;"> 
+            <source src="{{ i.video.url }}" type="video/mp4"> 
+        </video>  
+         
+      </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+
+    {% extends 'SuperAdmin_index.html'%}
+{% block content %}
+{% load static %}
+<head>
+  <link rel='stylesheet' id='productdesccss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/product-desc.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='newproductcss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/new-product-page.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='pageccss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/page.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='archiveproductcss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/product-archive.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='ivorystyles-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/ivory-styles.css?ver=5.7.6' type='text/css' media='all' />
+
+  <link rel='stylesheet' id='bootstrap-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/bootstrap/css/bootstrap.min.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='bootstrapstarter-style-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/style.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='singleproductcss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/singleproduct.css?ver=5.7.6' type='text/css' media='all' />
+  <link rel='stylesheet' id='bootstrap-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/bootstrap/css/bootstrap.min.css?ver=5.7.6' type='text/css' media='all' />
+  <script type='text/javascript' src='https://www.bootstrapdash.com/wp-includes/js/jquery/jquery.min.js?ver=3.5.1' id='jquery-core-js'></script>
+  </head>
+<main>
+    <div id="primary" class="content-area">
+      <main id="main" class="site-main" role="main">
+      
+        
+    <div class="container my-5">
+     
+
+  <div id="product-39413" class="product type-product post-39413 status-publish first instock product_cat-admin-dashboards product_cat-free-bootstrap-admin-templates has-post-thumbnail sold-individually shipping-taxable product-type-external">
+    {% for achievement in Achievement %}
+    <div class="wrap_image_summary ">
+      <div class="row" >
+        <div class="col-md-6 col-lg-6" >
+
+      <div class="woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4" style="opacity: 0; transition: opacity .25s ease-in-out;">
+    <figure class="woocommerce-product-gallery__wrapper">
+      <img src="{{achievement.Achievement_image.url }}" alt="" class="bd-detail-image  border rounded" /></figure>
+  </div>
+</div>
+<div class="col-md-6 col-lg-6 " >
+  
+    <div class="summary entry-summary ml-3">
+      <h1 class="product_title entry-title">{{ achievement.Achievement_title }}</h1>
+      <div class="woocommerce-product-details__short-description " >
+    <h5><span style="font-weight: 400; ">{{ achievement.Achievement_description }}</span></h5>
+  </div>
+  </div>
+  </div>
+  
+
+  
+  <hr>
+</div>
+{% endfor %}
+  
+</div>
+  </div>
+  </div>
+  
+  </div>
+ 
+
+  </div>
+   
+
+
+  <script type='text/javascript' id='wc-single-product-js-extra'>
+    /* <![CDATA[ */
+    var wc_single_product_params = {"i18n_required_rating_text":"Please select a rating","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":"thumbnails","slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"","zoom_options":[],"photoswipe_enabled":"","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":""};
+    /* ]]> */
+    </script>
+
+<script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/woocommerce/assets/js/frontend/single-product.min.js?ver=5.4.4' id='wc-single-product-js'></script>
+      
+    </main>
+  </div>
+    </main>
+  
+
+{% endblock %}

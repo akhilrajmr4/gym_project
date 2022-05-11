@@ -1,0 +1,41 @@
+{% extends 'SuperAdmin_index.html' %}
+{% block content %}
+{% load static %}
+<div class="row ">
+  <div class="grid-margin mb-2">
+    <h3> <small style="color: blueviolet; margin-left: 15px;">Expenses </small></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 grid-margin transparent">
+      <div class="row">
+        <div class="col-md-4 mb-4 stretch-card transparent" style="height: 130px;">
+          <div class="card card-tale">
+              <a href="{% url 'SuperAdmin_ExpenseView' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              <p class="mb-4"></p>
+              <h4>Expenses</h4>
+              <!-- <p class="fs-30 mb-6" style="margin-top: 30px;">Expenses</p> -->
+              <p></p>
+            </div>
+          </a>
+          </div>
+          
+        </div>
+        <div class="col-md-4 mb-4 stretch-card transparent" style="height: 130px;">
+          <div class="card card-dark-blue">
+              <a href="{% url 'SuperAdmin_FindExpense' %}" style="text-decoration: none; color: white;">
+            <div class="card-body">
+              <p class="mb-4"></p>
+              <h4>Find Expenses</h4>
+              <!-- <h4 class="mb-4" style="font-size: 27px; margin-top: 30px;">Find Expenses</h4> -->
+              <p></p>
+            </div>
+          </a>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+</div>
+{% endblock %}

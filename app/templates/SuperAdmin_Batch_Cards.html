@@ -1,0 +1,62 @@
+{% extends 'SuperAdmin_index.html'%} {% load static %} {% block content %}
+<div class="col-md-12 grid-margin transparent">
+    <div class="row">  
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+        <div class="card card-dark-blue">
+            <a href='{% url "SuperAdmin_AddBatch" %}' style="text-decoration: none; color: white;">
+          <div class="card-body">
+            
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h4 class="mt-5 ml-5 mb-5 text-light">Add Batch</h4>
+                  </div>
+              </div>
+          </div>
+        </a>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+        <div class="card" style="background-color: rgba(0, 255, 34, 0.469);">
+        <a href='{% url "SuperAdmin_ViewBatch" %}' style="text-decoration: none; color: white;">
+          <div class="card-body">
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h4 class="mt-5 ml-5 mb-5 text-light">View Batch</h4>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>         
+</div>
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if msg_success %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: '{{ msg_success }}',
+            showConfirmButton: false,
+            timer: 3000
+        }).then(function () {
+            javascript: history.go(-2);
+        })
+        
+    </script>
+    {% endif %}
+
+{% endblock %}

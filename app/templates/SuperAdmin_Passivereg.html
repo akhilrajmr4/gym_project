@@ -1,0 +1,209 @@
+{%extends 'SuperAdmin_index.html'%}
+{%load static%}
+{%block content%}
+
+
+
+
+
+
+
+    <div class="row">
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="col-12 d-flex pb-1">
+              <div class="col-12 p-0 my-auto ">
+                <h3 class="card-title">Passive Users</h3>
+                <input type="text" class="form-control text-dark " onkeyup="myFunction()" id="search" name="search" autocomplete="off"
+                placeholder="Search...">
+              </div>
+              <div class="col-12 d-md-flex justify-content-md-end">
+                <!-- Button trigger modal -->
+               
+
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Sl.No</th>
+                        <th> Name</th>
+                        
+                    
+                        <th>Email</th>
+                        <th>PhoneNo</th>
+                        <th>Join Date</th>
+                        <th>End Date</th>
+                        
+                        <th>Status</th>
+                        <th>Update</th>
+                        <th>Renew user</th>
+                       
+
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for i in user_registration %}
+                               
+                  <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td> <img src="{{ i.photo.url }}" alt="image" />
+                        <span>{{ i.fullname }}</span></td>
+                    
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.mobile }}</td>
+                    <td>{{i.joiningdate|date:"d-m-y" }}</td>
+                    <td>{{i.enddate|date:"d-m-y" }}</td>
+                    <td> <button type="button" class="btn btn-danger btn-fw btn-sm">Resign</button></td>
+                    <td><a href="{% url 'SuperAdmin_PassiveUpdate' i.id %}">
+                         <button type="button" class="btn btn-warning btn-fw btn-sm">Update</button></a></td>
+                    <!-- <td>
+                    <button type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#exampleModal">
+                     Payment
+                    </button>
+                  </td> -->
+                  <td class="text-primary"><a href="" data-toggle="modal" data-target="#exampleModal{{i.id}}" style="text-decoration: none;">
+                    <button type="button" class="btn btn-primary btn-fw btn-sm">Renew</button>
+                </a></td>
+                </tr>
+                
+                
+                            {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+            {% for i in user_registration %}
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{i.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Renew User {{ i.fullname }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                          <div class="card-body">
+    
+    
+                            <form class="forms-sample" action="{% url 'PassiveDates' i.id %}" method="post"
+                              enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <div class="form-group">
+                                <label for="date">Start Date</label>
+                                <input type="date" class="form-control txtDate" id="from" placeholder="Date" name="sdate" value="{{i.startdate |date:'Y-m-d' }}">
+                              </div>
+                              <div class="form-group">
+                                <label for="date">End Date</label>
+                                <input type="date" class="form-control txtDate" id="to" placeholder="Date" name="edate" value="{{i.enddate |date:'Y-m-d' }}">
+                              </div>
+    
+                              <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-icon-text btn-sm">
+                                  <i class="ti-file btn-icon-prepend"></i>
+                                  Submit
+                                </button>
+                              </div>
+    
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+    
+    
+                    </div>
+                  </div>
+    
+    
+    
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        {% endfor %}
+          </div>
+        </div>
+      </div>
+      <!-- partial -->
+    </div>
+    <!-- main-panel ends -->
+  </div>
+ 
+  <script>
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  </script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  $(function() {
+      var dtToday = new Date();
+      var month = dtToday.getMonth() + 1;
+      var day = dtToday.getDate();
+      var year = dtToday.getFullYear();
+      if (month < 10)
+          month = '0' + month.toString();
+      if (day < 10)
+          day = '0' + day.toString();
+      var minDate = year + '-' + month + '-' + day;
+      $('.txtDate').attr('min', minDate);
+  })
+</script>
+<script>
+  var start = document.getElementById('from');
+  var end = document.getElementById('to');
+
+  start.addEventListener('change', function() {
+    if (start.value)
+        end.min = start.value;
+  }, false);
+  end.addEventLiseter('change', function() {
+    if (end.value)
+        start.max = end.value;
+  }, false);
+</script>
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if msg_success %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: '{{ msg_success }}',
+            showConfirmButton: false,
+            timer: 3000
+        }).then(function () {
+            javascript: history.go(-2);
+        })
+        
+    </script>
+    {% endif %}
+
+{% endblock %}

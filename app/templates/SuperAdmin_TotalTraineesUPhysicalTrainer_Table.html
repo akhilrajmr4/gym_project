@@ -1,0 +1,63 @@
+{% extends 'SuperAdmin_index.html'%} {% load static %} {% block content %}
+
+  <div class="col-lg-12 grid-margin stretch-card">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Total Trainees Under This Physical Trainer</h4>
+          <div class="form-group">
+              <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."title="Type in a name">
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover" id="myTable">
+              <thead>
+                <tr>
+                  <th>Sl No</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Contact Number</th>
+                  <th>Joining Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for i in Trainee %}
+                <tr  onclick="window.location='{% url 'SuperAdmin_TraineeProfile' i.id %}'" style="cursor:pointer">
+                  <td>{{forloop.counter}}</td>
+                  <td>
+                    <img src="{{ i.photo.url }}" alt="image" />
+                    <span class="ps-2">{{ i.fullname }}</span>
+                </td>
+                  <td>{{ i.email }}</td>
+                  <td>{{ i.mobile }}</td>
+                  <td>{{ i.joiningdate|date:"d-m-Y" }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+  {% endblock %}
+
+

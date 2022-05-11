@@ -1,0 +1,62 @@
+{% extends 'SuperAdmin_index.html'%} {% load static %} {% block content %}
+<div class="col-md-12 grid-margin transparent">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+        <div class="card card-tale">
+        <a href='{% url "SuperAdmin_Total_Instructors_Table" %}' style="text-decoration: none; color: white;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h4 class="mt-4 ml-5 mb-0 text-light">Total Instructors</h4>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-8 col-xl-8 my-auto">
+                <h4 class="mt-3 ml-5 fs-30">{{ Trainer_count }}</h4>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+        <div class="card card-dark-blue">
+            <a href='{% url "SuperAdmin_trainees" %}' style="text-decoration: none; color: white;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h4 class="mt-4 ml-5 mb-0 text-light">Total Trainees</h4>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-8 col-xl-8 my-auto">
+                <h4 class=" mt-3 ml-5 fs-30">{{Trainee_count}}</h4>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+        <div class="card" style="background-color: rgba(0, 255, 34, 0.469);">
+        <a href='{% url "SuperAdmin_Machines" %}' style="text-decoration: none; color: white;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                  <div class="d-flex d-sm-block d-md-flex align-items-center">
+                      <h4 class="mt-4 ml-5 mb-0 text-light">Machines</h4>
+                  </div>
+              </div>
+              <div class="col-12 col-sm-8 col-xl-8 my-auto">
+                <h4 class=" mt-3 ml-5 fs-30">{{machine_count}}</h4>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+      </div>         
+</div>
+</div>
+
+{% endblock %}

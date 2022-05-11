@@ -1,0 +1,45 @@
+{% extends 'SuperAdmin_index.html'%} {% load static %} {% block content %}
+<div class="col-md-12 grid-margin transparent">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+      <div class="card bg-success">
+        <a href='{% url "SuperAdmin_ActiveTrainees" %}' style="text-decoration: none; color: white;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                <div class="d-flex d-sm-block d-md-flex align-items-center">
+                  <h4 class="mt-4 ml-5 mb-0 text-light">Active Trainees</h4>
+                </div>
+              </div>
+              <div class="col-12 col-sm-8 col-xl-8 my-auto">
+                <h4 class="mt-3 ml-5 fs-30">{{ Atraineenum }}</h4>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4 stretch-card transparent">
+      <div class="card bg-danger">
+        <a href="{% url 'SuperAdmin_PassiveTrainees' %}" style="text-decoration: none; color: white;">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12 col-sm-12 col-xl-12 my-auto">
+                <div class="d-flex d-sm-block d-md-flex align-items-center">
+                  <h4 class="mt-4 ml-5 mb-0 text-light">Passive Trainees</h4>
+                </div>
+              </div>
+              <div class="col-12 col-sm-8 col-xl-8 my-auto">
+                <h4 class="mt-3 ml-5 fs-30">{{ Ptraineenum }}</h4>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

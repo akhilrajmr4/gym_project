@@ -1,0 +1,95 @@
+{% extends 'SuperAdmin_index.html'%} 
+{% load static %} 
+{% block content %}
+
+
+
+
+<head>
+    <link rel='stylesheet' id='productdesccss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/product-desc.css?ver=5.7.6' type='text/css' media='all' />
+    <link rel='stylesheet' id='newproductcss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/new-product-page.css?ver=5.7.6' type='text/css' media='all' />
+    <link rel='stylesheet' id='pageccss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/page.css?ver=5.7.6' type='text/css' media='all' />
+    <link rel='stylesheet' id='archiveproductcss-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/product-archive.css?ver=5.7.6' type='text/css' media='all' />
+    <link rel='stylesheet' id='ivorystyles-css'  href='https://www.bootstrapdash.com/wp-content/themes/bootstradash/assets/css/ivory-styles.css?ver=5.7.6' type='text/css' media='all' />
+  </head>
+  <main>  
+    
+      <div class="container-fluid bd-single-product-page">
+          <center>
+          <h1>Achievement </h1>
+          </center>
+         
+      <div id="product-39413" class="product type-product post-39413 status-publish first instock product_cat-admin-dashboards product_cat-free-bootstrap-admin-templates has-post-thumbnail sold-individually shipping-taxable product-type-external">
+      <div class="wrap_image_summary ">
+      <div id="mitlisence" class="modal lrp-modal">
+      <div class="modal-dialog lrp-dialog d-flex h-100">
+      <div class="modal-content lrp-content my-auto p-3">
+      <div class="modal-body lrp-body">
+      </div>
+      </div>
+      </div>
+    </div>
+      
+       </div>
+      
+      </div>
+      
+      <div class="woocommerce-tabs wc-tabs-wrapper">
+      <div class="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description">
+      <div class="row mx-md-5 product-description-section">
+      <div class="col">
+      </div>
+      </div>
+      
+      <div id="product-demo-section" class="row product-demo-options overlay-effect">
+        {% for i in qs %}
+        <div class="product-card-item col-12 col-md-6 col-sm-12 col-lg-6">
+      <div class="overlay-container">
+      <div class="preview-wrapper"><img loading="lazy" class="alignnone size-full wp-image-39414" src="{{ i.Achievement_image.url }}" alt="" width="1000" height="642">
+      </div>
+      <div class="overlay-content">
+      <div class="button-wrapper"><a class="button button-view jquery" href="{% url 'SuperAdmin_achievements_achievement_1' i.id %}" rel="noopener noreferrer" data-wpel-link="internal">View</a>
+      </div>
+      </div>
+      </div>
+     
+      <div class="product-tittle-wrapper"><br>
+      <p class="product-layout-name">{{i.Achievement_title}} </p>
+      
+      </div>
+      
+      </div>
+      {% endfor %}
+     
+     
+      
+      </div>
+     
+      </div>
+      
+      </div> 
+     
+    </div>
+   
+
+      
+          
+        </main>
+        
+        <script type='text/javascript' id='wc-single-product-js-extra'>
+          /* <![CDATA[ */
+          var wc_single_product_params = {"i18n_required_rating_text":"Please select a rating","review_rating_required":"yes","flexslider":{"rtl":false,"animation":"slide","smoothHeight":true,"directionNav":false,"controlNav":"thumbnails","slideshow":false,"animationSpeed":500,"animationLoop":false,"allowOneSlide":false},"zoom_enabled":"","zoom_options":[],"photoswipe_enabled":"","photoswipe_options":{"shareEl":false,"closeOnScroll":false,"history":false,"hideAnimationDuration":0,"showAnimationDuration":0},"flexslider_enabled":""};
+          /* ]]> */
+          </script>
+   
+   <script type='text/javascript' src='https://www.bootstrapdash.com/wp-content/plugins/add-search-to-menu/public/js/ivory-search.min.js?ver=4.6.4' id='ivory-search-scripts-js'></script>
+   <script type='text/javascript' src='https://www.bootstrapdash.com/wp-includes/js/wp-embed.min.js?ver=5.7.6' id='wp-embed-js'></script>
+  
+
+{% endblock %}
+
+     
+
+
+
+

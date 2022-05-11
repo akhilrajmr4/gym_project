@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Gym</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'vendors/feather/feather.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/css/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+  <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'js/select.dataTables.min.css' %}">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'css/vertical-layout-light/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'logo3.jpg' %}" />
+</head>
+<style>
+  .abb{
+    color:#4B0082;
+    font-size:15px!important;
+  }
+  .abc{
+  color:#4B0082;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 50px;
+  font-weight: 700;
+  }
+</style>
+<body>
+  <div class="container-scroller">
+    <div class="container-fluid page-body-wrapper full-page-wrapper">
+      <div class="content-wrapper d-flex align-items-center auth px-0">
+        <div class="row w-100 mx-0">
+          <div class="col-lg-8 mx-auto">
+            <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="brand-logo">
+                <center> <h2 class="abc">Sign Up</h2></center>
+              </div>
+              <h4>New here?</h4>
+              <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+              <form class="pt-3" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6"><label class="abb" >Fullname</label>
+                  <input type="text" class="form-control " name="name" id="exampleInputUsername1" placeholder="Username" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="abb" >Email</label>
+                    <input type="email" class="form-control " name="email" id="exampleInputUsername1" placeholder="Email" required>
+                  </div>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6"><label class="abb">Date of birth</label>
+                  <input type="date" name="dateofbirth" class="form-control txtDate" id="exampleInputUsername1" placeholder="Date of birth" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="abb">Gender</label>
+                    <select class="form-control text-dark" name="gender" id="gender" required>
+                        <option >--select--</option>
+                        <option value="Male" class="text-dark" >Male</option>
+                        <option value="Female" class="text-dark" >Female</option>
+                        <option value="Other" class="text-dark" >Other</option>
+                    </select>
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-3"><label class="abb">Pincode</label>
+                  <input type="number" name="pincode" class="form-control " id="exampleInputUsername1" placeholder="Pincode" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="abb">District</label>
+                    <input type="text" name="district" class="form-control " id="exampleInputUsername1" placeholder="District" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="abb">State</label>
+                    <input type="text" name="state" class="form-control " id="exampleInputUsername1" placeholder="State" required>
+                  </div>
+                  <div class="col-md-3"><label class="abb">Country</label>
+                    <input type="text" class="form-control " name="country" id="exampleInputUsername1" placeholder="Country" required>
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                <div class="col-md-6">
+                    <label class="abb">Phone Number</label>
+                    <input type="number" name="mobile" class="form-control " id="exampleInputUsername1" placeholder="Phone Number" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="abb">Alternative Number</label>
+                    <input type="number" name="alt_no" class="form-control " id="exampleInputUsername1" placeholder="Alternative Number" required>
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6"><label class="abb">permanentaddress1</label>
+                  <input type="text" class="form-control " name="address1" id="exampleInputUsername1" placeholder="permanentaddress1" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="abb">permanentaddress2</label>
+                    <input type="text" class="form-control " name="address2" id="exampleInputUsername1" placeholder="permanentaddress2" required>
+                  </div>
+                  
+                </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6"><label class="abb">permanentaddress3</label>
+                  <input type="text" class="form-control " name="address3" id="exampleInputUsername1" placeholder="permanentaddress3" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="abb">Height</label>
+                    <input type="text" class="form-control " name="height" id="exampleInputUsername1" placeholder="Height" required>
+                  </div>
+                  <div class="col-md-3">
+                    <label class="abb">Weight</label>
+                    <input type="text" class="form-control " name="weight" id="exampleInputUsername1" placeholder="Weight" required>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6"><label class="abb">ID Proof</label>
+              <input type="file" class="form-control " name="id_proof" id="exampleInputUsername1" placeholder="ID Proof" required>
+            </div>
+            <div class="col-md-6">
+                <label class="abb">Profile Picture</label>
+                <input type="file" class="form-control " name="pic" id="exampleInputUsername1" placeholder="Profile Picture" required>
+              </div>
+              
+            </div>
+            </div>
+                <div class="mt-3 text-center">
+                  <button class="btn btn-primary " >SIGN UP</button>
+                </div>
+                <div class="text-center mt-4 font-weight-light">
+                  Already have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- content-wrapper ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+  <!-- plugins:js -->
+  <script src="../../vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="../../js/off-canvas.js"></script>
+  <script src="../../js/hoverable-collapse.js"></script>
+  <script src="../../js/template.js"></script>
+  <script src="../../js/settings.js"></script>
+  <script src="../../js/todolist.js"></script>
+  <!-- endinject -->
+</body>
+
+   <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if msg_success %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: '{{ msg_success }}',
+            showConfirmButton: false,
+            timer: 3000
+        }).then(function () {
+            javascript: history.go(-2);
+        })
+        
+    </script>
+    {% endif %}
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+  <script>
+      $(function() {
+          var dtToday = new Date();
+          var month = dtToday.getMonth() + 1;
+          var day = dtToday.getDate();
+          var year = dtToday.getFullYear();
+          if (month < 10)
+              month = '0' + month.toString();
+          if (day < 10)
+              day = '0' + day.toString();
+          var maxDate = year + '-' + month + '-' + day;
+          $('.txtDate').attr('max', maxDate);
+      })
+    </script>
+
+</html>
+

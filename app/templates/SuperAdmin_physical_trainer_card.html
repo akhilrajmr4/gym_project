@@ -1,0 +1,38 @@
+{%extends 'SuperAdmin_index.html'%} {% block content %} {% load static %}
+
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="row">
+          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
+            <h2 class="font-weight-bold">Physical Trainers</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 grid-margin transparent">
+        <div class="row">
+          <div class="col-md-6 mb-4 stretch-card transparent">
+            <a href="{% url 'SuperAdmin_active_trainers' %}" style="text-decoration: none; color: white;">
+              <div class="card bg-success">
+                <div class="card-body ml-2">
+                  <h4 class="my-3">Active Trainers</h4>
+                  <p class="fs-30 mb-3">{{count}}</p>
+                </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4 stretch-card transparent">
+          <a href="{% url 'SuperAdmin_resigned_trainers' %}" style="text-decoration: none; color: white;">
+            <div class="card bg-danger">
+              <div class="card-body ml-2">
+                <h4 class="my-3">Passive Trainers</h4>
+                <p class="fs-30 mb-3">{{count2}}</p>
+              </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  
+
+{% endblock %}

@@ -1,0 +1,279 @@
+{%extends 'SuperAdmin_index.html'%}
+{%load static%}
+{%block content%}
+
+
+
+
+<div class="row">
+  <div class="grid-margin col-lg-12 stretch-card">
+    <div class="card ">
+      <div class="card-body ">
+        <h4 class="card-title">Active Trainees</h4>
+        <input type="text" class="form-control text-dark" onkeyup="myFunction()" id="search" name="search"
+          autocomplete="off" placeholder="Search...">
+
+
+
+        <div class="col-12 d-md-flex justify-content-md-end">
+          <!-- Button trigger modal -->
+
+
+
+
+
+          <div class="table-responsive pt-3">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Sl.No</th>
+                  <th> Name</th>
+                  <th>Date of Birth</th>
+                  <th>PhoneNo</th>
+                  <th>Email</th>
+                  <th>Join Date</th>
+                  <th>Duration</th>
+                  <th>Physical Trainer</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                  <th>Add to PT</th>
+                  <th>Update</th>
+                  <th>Delete</th>
+
+                </tr>
+              </thead>
+              <tbody id="myTable">
+                {% for i in user_registration %}
+               
+                <form action="{% url 'Active_traineesave' i.id %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token%}
+                <tr>
+                 
+
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                      <img src="{{ i.photo.url }}" alt="" />
+                      <span>{{ i.fullname }}</span>
+                    </td>
+                    <td>{{ i.dateofbirth|date:"d-m-y" }}</td>
+                    <td>{{ i.mobile }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.joiningdate|date:"d-m-y" }}</td>
+
+                    <td class="text-primary"><a href="" data-toggle="modal" data-target="#exampleModal{{i.id}}"
+                        style="text-decoration: none;">
+                        <button type="button" class="btn btn-sm btn-info btn-icon-text">
+                          <i class="ti-calendar btn-icon-prepend"></i>Dates</button>
+                      </a></td>
+
+
+                    <td>
+
+                      <select class="badge badge-secondary  text-light" required name="ptrainer">
+                        {% for j in user_registration2 %}
+                        <option selected hidden value="{{j.fullname}}">{{j.fullname}}</option>
+                        <option value="{{j.id}}">{{j.fullname}}</option>
+                        {% endfor %}
+                      </select>
+
+                    </td>
+
+                    <td>
+                      <select class="btn btn-primary btn-sm" name="tstatus">
+                        <option>Active</option>
+                        <option>Resign</option>
+                      </select>
+                    </td>
+                    <td>
+                      <button type="submit" class="btn btn-sm btn-primary btn-icon-text">
+                        <i class="ti-file btn-icon-prepend"></i>
+                        Submit
+                      </button>
+                    </td>
+                    <td>
+                      <a href="{% url 'addtopt' i.id %}">
+                        <button type="button" class="btn btn-sm btn-success btn-icon-text">
+                          <i class="ti-plus btn-icon-prepend"></i>
+                          Add
+                        </button></a>
+                    </td>
+                    <td><a href="{% url 'SuperAdmin_Updatereg' i.id %}">
+                        <button type="button" class="btn btn-sm btn-warning btn-icon-text">
+                          <i class="ti-reload btn-icon-prepend"></i>
+                          Update
+                        </button></a>
+                    </td>
+                    <td>
+                      <a href="{% url 'Active_traineedelete' i.id %}">
+                        <button type="button" class="btn btn-sm btn-danger btn-icon-text">
+                          <i class="ti-trash btn-icon-prepend"></i>
+                          Delete
+                        </button></a>
+                    </td>
+                  </form>
+                </tr>
+                
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+
+
+
+
+
+
+
+        </div>
+
+        {% for i in user_registration %}
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal{{i.id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Renew User </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="row">
+                  <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+
+
+                        <form class="forms-sample" action="{% url 'Dates' i.id %}" method="post"
+                          enctype="multipart/form-data">
+                          {% csrf_token %}
+                          <div class="form-group">
+                            <label for="date">Start Date</label>
+                            <input type="date" class="form-control txtDate" id="date" placeholder="Date" name="sdate" value="{{i.startdate |date:'Y-m-d' }}">
+                          </div>
+                          <div class="form-group">
+                            <label for="date">End Date</label>
+                            <input type="date" class="form-control txtDate" id="date" placeholder="Date" name="edate" value="{{i.enddate |date:'Y-m-d' }}">
+                          </div>
+
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-icon-text btn-sm">
+                              <i class="ti-file btn-icon-prepend"></i>
+                              Submit
+                            </button>
+                          </div>
+
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+
+
+  function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("search");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
+  $(document).ready(function () {
+    $("#search").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+
+
+
+</script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    $(function() {
+        var dtToday = new Date();
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+        var minDate = year + '-' + month + '-' + day;
+        $('.txtDate').attr('min', minDate);
+    })
+  </script>
+
+<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        {% if msg_success %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: '{{ msg_success }}',
+            showConfirmButton: false,
+            timer: 3000
+        }).then(function () {
+            javascript: history.go(-2);
+        })
+        
+    </script>
+    {% endif %}
+
+{% endblock %}

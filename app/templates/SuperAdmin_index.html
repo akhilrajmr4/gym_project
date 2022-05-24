@@ -22,24 +22,26 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="{% static 'logo3.jpg' %}" />
 </head>
+
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class=" navbar-brand-wrapper ">
-        <a class=" " href="Trainee_index.html"></a><h3 class="n pt-3 pl-4">&nbsp;&nbsp;<b><i>GYM</i></b></h3>
-        <a class="navbar-brand brand-logo" href="Trainee_index.html"></a>
+        <a class=" " href="Trainee_index.html"></a>
+        <h3 class="n pt-3 pl-4"><b><i>GYM</i></b></h3>
+        <a class="navbar-brand brand-logo" href=""></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="icon-menu"></span>
         </button>
-        
+
         <ul class="navbar-nav navbar-nav-right">
-         
+
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{% static 'face1.jpg' %}" alt="profile"/>
+              <img src="{% static 'face1.jpg' %}" alt="profile" />
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -57,7 +59,8 @@
             </div>
           </li>
         </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+          data-toggle="offcanvas">
           <span class="icon-menu"></span>
         </button>
       </div>
@@ -65,94 +68,94 @@
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
-      
+
       <!-- partial -->
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-            <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_Dashboard" %}'>
-                  <i class="icon-grid menu-icon"></i>
-                  <span class="menu-title">Dashboard</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_RegistrationDetails" %}'>
-                  <i class="icon-layout menu-icon"></i>
-                  <span class="menu-title">Registration Details</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_physical_trainer_card" %}'>
-                  <i class="icon-head menu-icon"></i>
-                  <span class="menu-title">Physical Trainers</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_pay_det" %}'>
-                  <i class="icon-open menu-icon"></i>
-                  <span class="menu-title">Payment</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_Expense" %}'>
-                  <i class="icon-grid-2 menu-icon"></i>
-                  <span class="menu-title">Expense</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_Batch_Cards" %}'>
-                  <i class="icon-columns menu-icon"></i>
-                  <span class="menu-title">Batch</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "superadmin_workout" %}'>
-                  <i class="icon-loader menu-icon"></i>
-                  <span class="menu-title">Workout</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_Machine_card" %}'>
-                  <i class="icon-map menu-icon"></i>
-                  <span class="menu-title">Machine</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href='{% url "SuperAdmin_achievement_card" %}'>
-                  <i class="icon-contract menu-icon"></i>
-                  <span class="menu-title">Achievement</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="">
-                  <i class="icon-paper menu-icon"></i>
-                  <span class="menu-title">Certificate</span>
-                </a>
-              </li>
-             
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_Dashboard" %}'>
+              <i class="icon-grid menu-icon"></i>
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_RegistrationDetails" %}'>
+              <i class="icon-layout menu-icon"></i>
+              <span class="menu-title">Registration Details</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_physical_trainer_card" %}'>
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Physical Trainers</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_pay_det" %}'>
+              <i class="icon-open menu-icon"></i>
+              <span class="menu-title">Payment</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_Expense" %}'>
+              <i class="icon-grid-2 menu-icon"></i>
+              <span class="menu-title">Expense</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_Batch_Cards" %}'>
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Batch</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "superadmin_workout" %}'>
+              <i class="icon-loader menu-icon"></i>
+              <span class="menu-title">Workout</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_Machine_card" %}'>
+              <i class="icon-map menu-icon"></i>
+              <span class="menu-title">Machine</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='{% url "SuperAdmin_achievement_card" %}'>
+              <i class="icon-contract menu-icon"></i>
+              <span class="menu-title">Achievement</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <i class="icon-paper menu-icon"></i>
+              <span class="menu-title">Certificate</span>
+            </a>
+          </li>
+
         </ul>
       </nav>
-    
 
 
-      
+
+
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
           {%block content%} {%endblock%}
         </div>
       </div>
-      </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-       
-        <!-- partial -->
-      </div>
-     
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+
+    <!-- partial -->
+  </div>
+
+  <!-- main-panel ends -->
+  </div>
+  <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
 
@@ -180,4 +183,3 @@
 </body>
 
 </html>
-

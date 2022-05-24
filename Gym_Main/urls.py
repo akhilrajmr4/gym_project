@@ -25,14 +25,14 @@ urlpatterns = [
     #------------------------------Anandhu------------------------------
 
     re_path(r'^SuperAdmin_index/$', views.SuperAdmin_index, name='SuperAdmin_index'),
-    re_path(r'^SuperAdmin_Dashboard$', views.SuperAdmin_Dashboard,name='SuperAdmin_Dashboard'),
-    re_path(r'^SuperAdmin_Total_Instructors_Table$',views.SuperAdmin_Total_Instructors_Table, name='SuperAdmin_Total_Instructors_Table'),
+    re_path(r'^SuperAdmin_Dashboard/$', views.SuperAdmin_Dashboard,name='SuperAdmin_Dashboard'),
+    re_path(r'^SuperAdmin_Total_Instructors_Table/$',views.SuperAdmin_Total_Instructors_Table, name='SuperAdmin_Total_Instructors_Table'),
     re_path(r'^SuperAdmin_TotalTraineesUPhysicalTrainer_Table/(?P<id>\d+)/$',views.SuperAdmin_TotalTraineesUPhysicalTrainer_Table, name='SuperAdmin_TotalTraineesUPhysicalTrainer_Table'),
     re_path(r'^SuperAdmin_TraineeProfile/(?P<id>\d+)/$',views.SuperAdmin_TraineeProfile, name='SuperAdmin_TraineeProfile'),
-    re_path(r'^SuperAdmin_Batch_Cards$', views.SuperAdmin_Batch_Cards,name='SuperAdmin_Batch_Cards'),
-    re_path(r'^SuperAdmin_AddBatch$', views.SuperAdmin_AddBatch,name='SuperAdmin_AddBatch'),
-    re_path(r'^SuperAdmin_ViewBatch$', views.SuperAdmin_ViewBatch,name='SuperAdmin_ViewBatch'),
-    re_path(r'^SuperAdmin_AddBatchsave$', views.SuperAdmin_AddBatchsave,name='SuperAdmin_AddBatchsave'),
+    re_path(r'^SuperAdmin_Batch_Cards/$', views.SuperAdmin_Batch_Cards,name='SuperAdmin_Batch_Cards'),
+    re_path(r'^SuperAdmin_AddBatch/$', views.SuperAdmin_AddBatch,name='SuperAdmin_AddBatch'),
+    re_path(r'^SuperAdmin_ViewBatch/$', views.SuperAdmin_ViewBatch,name='SuperAdmin_ViewBatch'),
+    re_path(r'^SuperAdmin_AddBatchsave/$', views.SuperAdmin_AddBatchsave,name='SuperAdmin_AddBatchsave'),
     re_path(r'^SuperAdmin_UpdateBatch/(?P<id>\d+)/$',views.SuperAdmin_UpdateBatch, name='SuperAdmin_UpdateBatch'),
     re_path(r'^SuperAdmin_UpdateBatchsave/(?P<id>\d+)/$',views.SuperAdmin_UpdateBatchsave, name='SuperAdmin_UpdateBatchsave'),
     re_path(r'^SuperAdmin_BatchDelete/(?P<id>\d+)/$',views.SuperAdmin_BatchDelete, name='SuperAdmin_BatchDelete'),
@@ -49,17 +49,17 @@ urlpatterns = [
 
     #------------------------------Nimisha------------------------------
 
-    re_path(r'^SuperAdmin_Expense$', views.SuperAdmin_Expense,name='SuperAdmin_Expense'),
-    re_path(r'^SuperAdmin_ExpenseView$', views.SuperAdmin_ExpenseView,name='SuperAdmin_ExpenseView'),
-    re_path(r'^SuperAdmin_NewTransaction$', views.SuperAdmin_NewTransaction,name='SuperAdmin_NewTransaction'),
+    re_path(r'^SuperAdmin_Expense/$', views.SuperAdmin_Expense,name='SuperAdmin_Expense'),
+    re_path(r'^SuperAdmin_ExpenseView/$', views.SuperAdmin_ExpenseView,name='SuperAdmin_ExpenseView'),
+    re_path(r'^SuperAdmin_NewTransaction/$', views.SuperAdmin_NewTransaction,name='SuperAdmin_NewTransaction'),
     re_path(r'^SuperAdmin_ExpenseViewEdit/(?P<id>\d+)$', views.SuperAdmin_ExpenseViewEdit,name='SuperAdmin_ExpenseViewEdit'),
     re_path(r'^SuperAdmin_ExpenseViewEdit_Update/(?P<id>\d+)$', views.SuperAdmin_ExpenseViewEdit_Update,name='SuperAdmin_ExpenseViewEdit_Update'),
-    re_path(r'^SuperAdmin_FindExpense$', views.SuperAdmin_FindExpense,name='SuperAdmin_FindExpense'),
-    re_path(r'^SuperAdmin_FindExpense_Show$', views.SuperAdmin_FindExpense_Show,name='SuperAdmin_FindExpense_Show'),
-    re_path(r'^SuperAdmin_FindExpenseView$', views.SuperAdmin_FindExpenseView,name='SuperAdmin_FindExpenseView'),
+    re_path(r'^SuperAdmin_FindExpense/$', views.SuperAdmin_FindExpense,name='SuperAdmin_FindExpense'),
+    re_path(r'^SuperAdmin_FindExpense_Show/$', views.SuperAdmin_FindExpense_Show,name='SuperAdmin_FindExpense_Show'),
+    re_path(r'^SuperAdmin_FindExpenseView/$', views.SuperAdmin_FindExpenseView,name='SuperAdmin_FindExpenseView'),
     re_path(r'^SuperAdmin_FindExpenseViewEdit/(?P<id>\d+)$', views.SuperAdmin_FindExpenseViewEdit,name='SuperAdmin_FindExpenseViewEdit'),
     re_path(r'^SuperAdmin_FindExpenseViewEdit_Update/(?P<id>\d+)$', views.SuperAdmin_FindExpenseViewEdit_Update,name='SuperAdmin_FindExpenseViewEdit_Update'),
-    re_path(r'^SuperAdmin_FindExpenseNewTransaction$', views.SuperAdmin_FindExpenseNewTransaction,name='SuperAdmin_FindExpenseNewTransaction'),
+    re_path(r'^SuperAdmin_FindExpenseNewTransaction/$', views.SuperAdmin_FindExpenseNewTransaction,name='SuperAdmin_FindExpenseNewTransaction'),
 
     #------------------------------Anwar------------------------------
      
@@ -114,12 +114,12 @@ urlpatterns = [
 
     #------------------------------Unnikrishnan------------------------------
     
-    re_path(r'^superadmin_workout$',views.superadmin_workout,name='superadmin_workout'),
-    re_path(r'^superadmin_viewworkout$',views.superadmin_viewworkout,name='superadmin_viewworkout'),
-    re_path(r'^superadmin_addworkout$',views.superadmin_addworkout,name='superadmin_addworkout'),
-    re_path(r'^superadmin_tutorialpage$',views.superadmin_tutorialpage,name='superadmin_tutorialpage'),
-    re_path(r'^workout1$',views.workout1,name='workout1'),
-    re_path(r'^superadmin_addtutorial$',views.superadmin_addtutorial,name='superadmin_addtutorial'),
+    re_path(r'^superadmin_workout/$',views.superadmin_workout,name='superadmin_workout'),
+    re_path(r'^superadmin_viewworkout/$',views.superadmin_viewworkout,name='superadmin_viewworkout'),
+    re_path(r'^superadmin_addworkout/$',views.superadmin_addworkout,name='superadmin_addworkout'),
+    re_path(r'^superadmin_tutorialpage/$',views.superadmin_tutorialpage,name='superadmin_tutorialpage'),
+    re_path(r'^workout1/$',views.workout1,name='workout1'),
+    re_path(r'^superadmin_addtutorial/$',views.superadmin_addtutorial,name='superadmin_addtutorial'),
     re_path(r'^superadmin_ChestDetailView(?P<i_id>[0-9]+)/$',views.superadmin_ChestDetailView,name='superadmin_ChestDetailView'),
     re_path(r'^deletevideo(?P<i_id>[0-9]+)/$',views.deletevideo,name='deletevideo'),
 
@@ -155,7 +155,7 @@ urlpatterns = [
 
     #------------------------------Meenu------------------------------
 
-    re_path(r'^Trainer_workout_images$',views.Trainer_workout_images,name='Trainer_workout_images'),
+    re_path(r'^Trainer_workout_images/$',views.Trainer_workout_images,name='Trainer_workout_images'),
     re_path(r'^Trainer_workoutvideos1/(?P<id>\d+)/$',views.Trainer_workoutvideos1,name='Trainer_workoutvideos1'),
 
     #******************************Trainee******************************
@@ -179,7 +179,7 @@ urlpatterns = [
 
     #------------------------------meenu------------------------------
 
-    re_path(r'^Trainee_workout_images$',views.Trainee_workout_images,name='Trainee_workout_images'),
+    re_path(r'^Trainee_workout_images/$',views.Trainee_workout_images,name='Trainee_workout_images'),
     re_path(r'^Trainee_workoutvideos1/(?P<id>\d+)/$',views.Trainee_workoutvideos1,name='Trainee_workoutvideos1'),
 
 

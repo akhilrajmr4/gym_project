@@ -34,8 +34,7 @@
                             </thead>
                             <tbody>
                                 {% for i in var %}
-                                <!-- <td>{{i.paydate|date:"d-m-Y"}}</td> -->
-                                <td>{{i.paydate}}</td>
+                                <td>{{i.paydate|date:"d-m-Y"}}</td>
                                 <td>{{i.payee}}</td> 
                                 <td>{{i.category}}</td>
                                 <td>{{i.amount}}</td>
@@ -46,28 +45,7 @@
                                 </td>
                                 </tr>
                                 {% endfor %}
-                                <!-- <tr>
-                                    <td>10-04-2022</td>
-                                    <td>12000</td>
-                                    <td>abcd</td>
-                                    <td>12000</td>
-                                    <td>500</td>
-                                    <td>11500</td>
-                                    <td>
-                                        <a href="" class="btn btn-outline-warning btn-icon-text"  style="color: white; background-color: rgb(247, 210, 3);">View/Edit</a>
-                                    </td>
-                                </tr> 
-                                <tr>
-                                    <td>06-03-2022</td>
-                                    <td>8000</td>
-                                    <td>hhjk</td>
-                                    <td>8000</td>
-                                    <td>200</td>
-                                    <td>7800</td>
-                                    <td>
-                                        <a href="" class="btn btn-outline-warning btn-icon-text" style="color: white; background-color: rgb(247, 210, 3);">View/Edit</a>
-                                    </td>
-                                </tr>               -->
+                                </tr>             
                             </tbody>
                             <tr>
                                 <td colspan="5" class="text-black" style="text-align: center;">

@@ -86,8 +86,19 @@
             position: 'center',
             icon: 'success',
             text: '{{ msg_success }}',
-            showConfirmButton: false,
-            timer: 3000
+            showConfirmButton: false
+        }).then(function () {
+            javascript: history.go(-2);
+        })
+        
+    </script>
+    {% endif %}
+        {% if msg_error %}
+    <script>
+        Swal.fire({
+            position: 'center',
+            icon: 'error',
+            text: '{{ msg_error }}',
         }).then(function () {
             javascript: history.go(-2);
         })

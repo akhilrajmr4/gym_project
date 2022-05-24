@@ -13,6 +13,7 @@
               <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Workout Name</label>
               <div class="col-sm-9">
                 <select class="form-control" name="sel" required>
+                  <option value="" disabled selected>-- Not select --</option>
                     {% for wrk in workouts %}
                     <option value="{{ wrk.id }}">{{ wrk.workout_name }}</option>
                     {% endfor %}

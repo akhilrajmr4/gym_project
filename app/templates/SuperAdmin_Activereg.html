@@ -27,7 +27,7 @@
               <thead>
                 <tr>
                   <th>Sl.No</th>
-                  <th> Name</th>
+                  <th>Name</th>
                   <th>Date of Birth</th>
                   <th>PhoneNo</th>
                   <th>Email</th>
@@ -55,10 +55,10 @@
                       <img src="{{ i.photo.url }}" alt="" />
                       <span>{{ i.fullname }}</span>
                     </td>
-                    <td>{{ i.dateofbirth|date:"d-m-y" }}</td>
+                    <td>{{ i.dateofbirth|date:"d-m-Y" }}</td>
                     <td>{{ i.mobile }}</td>
                     <td>{{ i.email }}</td>
-                    <td>{{ i.joiningdate|date:"d-m-y" }}</td>
+                    <td>{{ i.joiningdate|date:"d-m-Y" }}</td>
 
                     <td class="text-primary"><a href="" data-toggle="modal" data-target="#exampleModal{{i.id}}"
                         style="text-decoration: none;">
@@ -85,14 +85,14 @@
                       </select>
                     </td>
                     <td>
-                      <button type="submit" class="btn btn-sm btn-primary btn-icon-text">
+                      <button onclick="return confirm('Are you sure ?');" type="submit" class="btn btn-sm btn-primary btn-icon-text">
                         <i class="ti-file btn-icon-prepend"></i>
                         Submit
                       </button>
                     </td>
                     <td>
-                      <a href="{% url 'addtopt' i.id %}">
-                        <button type="button" class="btn btn-sm btn-success btn-icon-text">
+                      <a onclick="return confirm('Are you sure ?');" href="{% url 'addtopt' i.id %}">
+                        <button  type="button" class="btn btn-sm btn-success btn-icon-text">
                           <i class="ti-plus btn-icon-prepend"></i>
                           Add
                         </button></a>
@@ -104,7 +104,7 @@
                         </button></a>
                     </td>
                     <td>
-                      <a href="{% url 'Active_traineedelete' i.id %}">
+                      <a onclick="return confirm('Are you sure you want to delete this ?');" href="{% url 'Active_traineedelete' i.id %}">
                         <button type="button" class="btn btn-sm btn-danger btn-icon-text">
                           <i class="ti-trash btn-icon-prepend"></i>
                           Delete
@@ -159,7 +159,7 @@
                           </div>
 
                           <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-icon-text btn-sm">
+                            <button onclick="return confirm('Are you sure ?');" type="submit" class="btn btn-primary btn-icon-text btn-sm">
                               <i class="ti-file btn-icon-prepend"></i>
                               Submit
                             </button>

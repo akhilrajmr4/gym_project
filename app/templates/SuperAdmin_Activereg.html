@@ -32,6 +32,8 @@
                   <th>PhoneNo</th>
                   <th>Email</th>
                   <th>Join Date</th>
+                  <th>Registration Fee</th>
+                  <th>Monthly Fee</th>
                   <th>Duration</th>
                   <th>Physical Trainer</th>
                   <th>Status</th>
@@ -59,6 +61,14 @@
                     <td>{{ i.mobile }}</td>
                     <td>{{ i.email }}</td>
                     <td>{{ i.joiningdate|date:"d-m-Y" }}</td>
+                    <td>
+                      <input type="number" class="" name="admission_rate" value="{{i.admission_rate}}"
+                        style="border: 1px solid #4B49AC; width: 75px;height: 35px; border-radius: 10px;text-align: center;">
+                    </td>
+                    <td>
+                      <input type="number" class="" name="fees_rate" value="{{i.fees_rate}}"
+                        style="border: 1px solid #4B49AC; width: 75px;height: 35px; border-radius: 10px;text-align: center;">
+                    </td>
 
                     <td class="text-primary"><a href="" data-toggle="modal" data-target="#exampleModal{{i.id}}"
                         style="text-decoration: none;">
@@ -70,8 +80,18 @@
                     <td>
 
                       <select class="badge badge-secondary  text-light" required name="ptrainer">
+                        {% if i.Trainer_id == 0 %}
+                        <option selected value="0">-- Not selected --</option>
+                        {%else%}
+                        <option value="{{i.Trainer_id}}" selected>
+                          {% for x in user_registration2 %}
+                          {% if x.id == i.Trainer_id  %}
+                          {{x.fullname}}
+                          {% endif %}
+                          {% endfor %}
+                        </option>
+                        {%endif%}
                         {% for j in user_registration2 %}
-                        <option selected hidden value="{{j.fullname}}">{{j.fullname}}</option>
                         <option value="{{j.id}}">{{j.fullname}}</option>
                         {% endfor %}
                       </select>

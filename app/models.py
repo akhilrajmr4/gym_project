@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from xml.parsers.expat import model
 from xmlrpc.client import boolean
 from django.contrib.auth.models import User
@@ -31,9 +32,9 @@ class user_registration(models.Model):
         auto_now_add=False, auto_now=False,  null=True, blank=True)
     gender = models.CharField(max_length=240, null=True)
     pincode = models.CharField(max_length=240, null=True)
+    native_place = models.CharField(max_length=240, null=True)
     district = models.CharField(max_length=240, null=True)
     state = models.CharField(max_length=240, null=True)
-    country = models.CharField(max_length=240, null=True)
     permanentaddress1 = models.CharField(max_length=240, null=True)
     permanentaddress2 = models.CharField(max_length=240, null=True)
     permanentaddress3 = models.CharField(max_length=240, null=True)
@@ -41,8 +42,8 @@ class user_registration(models.Model):
     alternativeno = models.CharField(max_length=240, null=True)
     email = models.EmailField(max_length=240, null=True)
     password = models.CharField(max_length=240, null=True)
-    height = models.CharField(max_length=240, null=True)
-    weight = models.CharField(max_length=240, null=True)
+    height = models.IntegerField(default='0', null=True, blank=True)
+    weight = models.IntegerField(default='0', null=True, blank=True)
     idproof = models.FileField(upload_to='images/', null=True, blank=True)
     photo = models.FileField(upload_to='images/', null=True, blank=True)
     joiningdate = models.DateField(
@@ -51,9 +52,18 @@ class user_registration(models.Model):
         auto_now_add=False, auto_now=False,  null=True, blank=True)
     enddate = models.DateField(
         auto_now_add=False, auto_now=False,  null=True, blank=True)
-    status = models.CharField(max_length=240, null=True, default='')
+    status = models.CharField(max_length=240, null=True, default='0')
     rate = models.CharField(max_length=200, null=True, default='')
     Trainer_id = models.IntegerField(default='0', null=True, blank=True)
+    admission_rate = models.IntegerField(default='0', null=True, blank=True)
+    fees_rate = models.IntegerField(default='0', null=True, blank=True)
+    reg_end_date = models.DateField(
+        auto_now_add=False, auto_now=False,  null=True, blank=True)
+    net_due_date = models.DateField(
+        auto_now_add=False, auto_now=False,  null=True, blank=True)
+    batch = models.ForeignKey(batch, on_delete=models.SET_NULL,
+                              related_name='batches', null=True, blank=True)
+    select_status = models.IntegerField(default='0', null=True, blank=True)
 
     def __str__(self):
         return self.fullname
@@ -116,9 +126,9 @@ class payment(models.Model):
     date = models.DateField(
         auto_now_add=False, auto_now=False,  null=True, blank=True)
     payment = models.CharField(max_length=240, null=True)
-    bank = models.CharField(max_length=240, null=True)
-    accountnumber = models.CharField(max_length=240, null=True)
-    ifse = models.CharField(max_length=240, null=True)
+    payment_type = models.CharField(max_length=240, null=True)
+    net_due_date = models.DateField(
+        auto_now_add=False, auto_now=False,  null=True, blank=True)
     status = models.IntegerField(default=0)
 
 

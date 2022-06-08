@@ -65,12 +65,15 @@ urlpatterns = [
      
     re_path(r'^SuperAdmin_RegistrationDetails/$',views.SuperAdmin_RegistrationDetails, name='SuperAdmin_RegistrationDetails'),
     re_path(r'^SuperAdmin_Activereg/$', views.SuperAdmin_Activereg,name='SuperAdmin_Activereg'),
+    re_path(r'^SuperAdmin_newreg/$', views.SuperAdmin_newreg,name='SuperAdmin_newreg'),
     re_path(r'^Dates/(?P<id>\d+)/$', views.Dates, name='Dates'),
     re_path(r'^Active_traineesave/(?P<id>\d+)/$',views.Active_traineesave, name='Active_traineesave'),
     re_path(r'^addtopt/(?P<id>\d+)/$', views.addtopt, name='addtopt'),
+    re_path(r'^addtotr/(?P<id>\d+)/$', views.addtotr, name='addtotr'),
     re_path(r'^SuperAdmin_Updatereg/(?P<id>\d+)/$',views.SuperAdmin_Updatereg, name='SuperAdmin_Updatereg'),
     re_path(r'^Active_traineeupdate/(?P<id>\d+)/$',views.Active_traineeupdate, name='Active_traineeupdate'),
     re_path(r'^Active_traineedelete/(?P<id>\d+)/$',views.Active_traineedelete, name='Active_traineedelete'),
+    re_path(r'^Active_traineeaccept/(?P<id>\d+)/$',views.Active_traineeaccept, name='Active_traineeaccept'),
     re_path(r'^SuperAdmin_Passivereg/$', views.SuperAdmin_Passivereg,name='SuperAdmin_Passivereg'),
     re_path(r'^Passive_traineeupdate/(?P<id>\d+)/$',views.Passive_traineeupdate, name='Passive_traineeupdate'),
     re_path(r'^SuperAdmin_PassiveUpdate/(?P<id>\d+)/$',views.SuperAdmin_PassiveUpdate, name='SuperAdmin_PassiveUpdate'),
@@ -97,6 +100,7 @@ urlpatterns = [
     re_path(r'^SuperAdmin_current_trainees_payment_add/(?P<id>\d+)/$', views.SuperAdmin_current_trainees_payment_add, name='SuperAdmin_current_trainees_payment_add'),
     re_path(r'^SuperAdmin_current_trainees_payment_update/(?P<id>\d+)/$', views.SuperAdmin_current_trainees_payment_update, name='SuperAdmin_current_trainees_payment_update'),
     re_path(r'^SuperAdmin_current_trainees_payment_adding/(?P<id>\d+)/$', views.SuperAdmin_current_trainees_payment_adding, name='SuperAdmin_current_trainees_payment_adding'),
+    re_path(r'^SuperAdmin_current_trainees_payment_verify/(?P<id>\d+)/$', views.SuperAdmin_current_trainees_payment_verify, name='SuperAdmin_current_trainees_payment_verify'),
     re_path(r'^SuperAdmin_current_trainees_payment_edit/(?P<id>\d+)/$', views.SuperAdmin_current_trainees_payment_edit, name='SuperAdmin_current_trainees_payment_edit'),
     re_path(r'^SuperAdmin_current_trainees_payment_delete/(?P<id>\d+)/$', views.SuperAdmin_current_trainees_payment_delete, name='SuperAdmin_current_trainees_payment_delete'),
 
@@ -170,7 +174,7 @@ urlpatterns = [
     #------------------------------unnikrishnan------------------------------
 
     re_path(r'^Trainee_index/$',views.Trainee_index,name='Trainee_index'),
-    re_path(r'^Trainee_Dashboard$',views.Trainee_Dashboard,name='Trainee_Dashboard'),
+    re_path(r'^Trainee_Dashboard/$',views.Trainee_Dashboard,name='Trainee_Dashboard'),
 
     #------------------------------Akhil------------------------------
   

@@ -34,6 +34,18 @@
     font-size: 50px;
     font-weight: 700;
   }
+
+
+  #choose::file-selector-button {
+    background-color: #F5F7FF;
+    color: black !important;
+    width: 100px;
+    margin-left: -20px;
+    height: 40px;
+    margin-top: -14px;
+    border: none;
+
+  }
 </style>
 
 <body>
@@ -54,11 +66,11 @@
                 {% csrf_token %}
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6"><label class="abb">Fullname</label>
-                      <input type="text" class="form-control " name="name" placeholder="Username" required
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2"><label class="abb">Fullname</label>
+                      <input type="text" class="form-control " name="name" placeholder="Full name" required
                         autocomplete="off">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
                       <label class="abb">Email</label>
                       <input type="email" class="form-control " name="email" placeholder="Email" required
                         autocomplete="off">
@@ -67,11 +79,11 @@
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6"><label class="abb">Date of birth</label>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2"><label class="abb">Date of birth</label>
                       <input type="date" name="dateofbirth" class="form-control txtDate" placeholder="Date of birth"
                         required autocomplete="off">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2">
                       <label class="abb">Gender</label>
                       <select class="form-control text-dark" name="gender" id="gender" required>
                         <option>--select--</option>
@@ -80,38 +92,26 @@
                         <option value="Other" class="text-dark">Other</option>
                       </select>
                     </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class="row">
-                    <div class="col-md-3"><label class="abb">Pincode</label>
-                      <input type="number" name="pincode" class="form-control " placeholder="Pincode" required
-                        autocomplete="off">
-                    </div>
-                    <div class="col-md-3">
-                      <label class="abb">District</label>
-                      <input type="text" name="district" class="form-control " placeholder="District" required
-                        autocomplete="off">
-                    </div>
-                    <div class="col-md-3">
-                      <label class="abb">State</label>
-                      <input type="text" name="state" class="form-control " placeholder="State" required
-                        autocomplete="off">
-                    </div>
-                    <div class="col-md-3"><label class="abb">Country</label>
-                      <input type="text" class="form-control " name="country" placeholder="Country" required
-                        autocomplete="off">
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2">
+                      <label class="abb">Batch</label>
+                      <select class="form-control text-dark" name="batch" required>
+                        <option selected disabled>--select--</option>
+                        {% for x in batchs %}
+                        <option value="{{x.id}}" class="text-dark">{{x.batch}}</option>
+                        {%endfor%}
+                      </select>
                     </div>
                   </div>
                 </div>
+
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
                       <label class="abb">Phone Number</label>
                       <input type="tel" maxlength="12" name="mobile" class="form-control " placeholder="Phone Number"
                         required autocomplete="off">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
                       <label class="abb">Alternative Number</label>
                       <input type="tel" maxlength="12" name="alt_no" class="form-control "
                         placeholder="Alternative Number" required autocomplete="off">
@@ -120,11 +120,11 @@
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6"><label class="abb">permanentaddress1</label>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2"><label class="abb">permanentaddress1</label>
                       <input type="text" class="form-control " name="address1" placeholder="permanentaddress1" required
                         autocomplete="off">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
                       <label class="abb">permanentaddress2</label>
                       <input type="text" class="form-control " name="address2" placeholder="permanentaddress2" required
                         autocomplete="off">
@@ -134,30 +134,55 @@
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6"><label class="abb">permanentaddress3</label>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2"><label class="abb">permanentaddress3</label>
                       <input type="text" class="form-control " name="address3" placeholder="permanentaddress3" required
                         autocomplete="off">
                     </div>
-                    <div class="col-md-3">
-                      <label class="abb">Height</label>
-                      <input type="text" class="form-control " name="height" placeholder="Height" required
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2"><label class="abb">Pincode</label>
+                      <input type="number" name="pincode" class="form-control " placeholder="Pincode" required
                         autocomplete="off">
                     </div>
-                    <div class="col-md-3">
-                      <label class="abb">Weight</label>
-                      <input type="text" class="form-control " name="weight" placeholder="Weight" required
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2">
+                      <label class="abb">Native Place</label>
+                      <input type="text" name="native_place" class="form-control " placeholder="Native Place" required
                         autocomplete="off">
                     </div>
+
+
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="row">
-                    <div class="col-md-6"><label class="abb">ID Proof</label>
-                      <input type="file" class="form-control " name="id_proof" placeholder="ID Proof" required>
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2">
+                      <label class="abb">District</label>
+                      <input type="text" name="district" class="form-control " placeholder="District" required
+                        autocomplete="off">
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2"><label class="abb">State</label>
+                      <input type="text" class="form-control " name="state" placeholder="State" required
+                        autocomplete="off">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2">
+                      <label class="abb">Height(cm)</label>
+                      <input type="number" class="form-control " name="height" placeholder="Height" required
+                        autocomplete="off">
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12  col-12 mt-2">
+                      <label class="abb">Weight(kg)</label>
+                      <input type="number" class="form-control " name="weight" placeholder="Weight" required
+                        autocomplete="off">
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2"><label class="abb">ID Proof</label>
+                      <input type="file" class="form-control " name="id_proof" placeholder="ID Proof" id="choose" required>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
                       <label class="abb">Profile Picture</label>
-                      <input type="file" class="form-control " name="pic" placeholder="Profile Picture" required>
+                      <input type="file" class="form-control " name="pic" placeholder="Profile Picture" accept="image/*" id="choose" required>
                     </div>
 
                   </div>

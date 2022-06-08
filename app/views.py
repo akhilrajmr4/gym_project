@@ -14,6 +14,7 @@ from django.db.models import Q
 from Gym_Main.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
 
+
 # **********Login**********
 
 
@@ -43,15 +44,22 @@ def login(request):
 
                 member = user_registration.objects.get(
                     email=request.POST['email'], password=request.POST['password'])
-                request.session['Tne_id'] = member.designation_id
-                request.session['usernamets1'] = member.fullname
-                request.session['Tne_id'] = member.id
+                dd = (member.reg_end_date - datetime.now().date()).days
+                if (dd >= 0):
+                    request.session['Tne_id'] = member.designation_id
+                    request.session['usernamets1'] = member.fullname
+                    request.session['Tne_id'] = member.id
+                    return redirect('Trainee_Dashboard')
+                else:
+                    context = {
+                        'msg_error': 'Your registration End. Please renew registration'}
+                    return render(request, 'login.html', context)
 
-                return redirect('Trainee_Dashboard')
             else:
                 context = {'msg_error': 'Invalid data'}
                 return render(request, 'login.html', context)
-    return render(request, 'login.html')
+    else:
+        return render(request, 'login.html')
 
 
 # ***********Reset Password************
@@ -107,13 +115,15 @@ def Registration(request):
             acc.idproof = request.FILES['id_proof']
             acc.photo = request.FILES['pic']
             acc.state = request.POST['state']
-            acc.country = request.POST['country']
+            acc.native_place = request.POST['native_place']
             acc.permanentaddress1 = request.POST['address1']
             acc.permanentaddress2 = request.POST['address2']
             acc.permanentaddress3 = request.POST['address3']
             acc.height = request.POST['height']
             acc.weight = request.POST['weight']
+            acc.batch_id = request.POST['batch']
             acc.joiningdate = datetime.now()
+            acc.reg_end_date = datetime.now() + timedelta(days=90)
             acc.status = "active"
             acc.designation_id = Trainee.id
             acc.save()
@@ -127,7 +137,9 @@ def Registration(request):
                       [recepient], fail_silently=False)
             msg_success = "Registration successfully Check Your Registered Mail"
             return render(request, 'Registration.html', {'msg_success': msg_success})
-    return render(request, 'Registration.html')
+    else:
+        batchs = batch.objects.all()
+        return render(request, 'Registration.html', {'batchs': batchs})
 
 # ******************************Super Admin******************************
 
@@ -664,7 +676,7 @@ def SuperAdmin_RegistrationDetails(request):
         users = User.objects.filter(id=SAdm_id)
     trainee = designation.objects.get(designation='Trainee')
     count1 = user_registration.objects.filter(
-        designation=trainee).filter(status='active').count()
+        designation=trainee).filter(status='active', select_status=1).count()
     count2 = user_registration.objects.filter(
         designation=trainee).filter(status='resign').count()
     return render(request, 'SuperAdmin_RegistrationDetails.html', {'users': users, 'count1': count1, 'count2': count2})
@@ -680,10 +692,26 @@ def SuperAdmin_Activereg(request):
         trainee = designation.objects.get(designation="Trainee")
         trainer = designation.objects.get(designation="Trainer")
         user = user_registration.objects.filter(
-            designation=trainee).filter(status='active').order_by("-id")
+            designation=trainee).filter(status='active', select_status=1).order_by("-id")
         user2 = user_registration.objects.filter(
-            designation=trainer).filter(status='active')
+            designation=trainer).filter(status='active', select_status=1)
         return render(request, 'SuperAdmin_Activereg.html', {'users': users, 'user_registration': user, 'user_registration2': user2})
+    else:
+        return redirect('/')
+
+
+def SuperAdmin_newreg(request):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        else:
+            return redirect('/')
+        users = User.objects.filter(id=SAdm_id)
+        trainee = designation.objects.get(designation="Trainee")
+        trainer = designation.objects.get(designation="Trainer")
+        user = user_registration.objects.filter(
+            status='active', select_status=0)
+        return render(request, 'SuperAdmin_newreg.html', {'users': users, 'user_registration': user})
     else:
         return redirect('/')
 
@@ -716,6 +744,8 @@ def Active_traineesave(request, id):
         if request.method == 'POST':
             trainer.Trainer_id = request.POST.get('ptrainer')
             trainer.status = request.POST.get('tstatus')
+            trainer.admission_rate = request.POST.get('admission_rate')
+            trainer.fees_rate = request.POST.get('fees_rate')
             trainer.save()
         return redirect('SuperAdmin_Activereg')
     else:
@@ -734,6 +764,22 @@ def addtopt(request, id):
         user.designation = trainer
         user.save()
         return redirect('SuperAdmin_Activereg')
+    else:
+        return redirect('/')
+
+
+def addtotr(request, id):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        else:
+            return redirect('/')
+        users = User.objects.filter(id=SAdm_id)
+        user = user_registration.objects.get(id=id)
+        trainee = designation.objects.get(designation='Trainee')
+        user.designation_id = trainee.id
+        user.save()
+        return redirect('SuperAdmin_active_trainers')
     else:
         return redirect('/')
 
@@ -784,6 +830,22 @@ def Active_traineedelete(request, id):
         user.delete()
         msg_success = "Deleted successfully"
         return render(request, 'SuperAdmin_Activereg.html', {'users': users, 'msg_success': msg_success})
+    else:
+        return redirect('/')
+
+
+def Active_traineeaccept(request, id):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        else:
+            return redirect('/')
+        users = User.objects.filter(id=SAdm_id)
+        user = user_registration.objects.get(id=id)
+        user.select_status = 1
+        user.save()
+        msg_success = "Accept successfully"
+        return render(request, 'SuperAdmin_newreg.html', {'users': users, 'msg_success': msg_success})
     else:
         return redirect('/')
 
@@ -1101,8 +1163,6 @@ def SuperAdmin_current_trainees_payment(request, id):
             return render(request, 'SuperAdmin_current_trainees_payment.html', {'users': users, 'ct': ct, 'pay': pay, 'msg_success': msg_success})
         else:
             return render(request, 'SuperAdmin_current_trainees_payment.html', {'users': users, 'ct': ct, 'pay': pay})
-
-        return render(request, 'SuperAdmin_current_trainees_payment.html', {'users': users, 'ct': ct, 'pay': pay})
     else:
         return redirect('/')
 
@@ -1124,6 +1184,7 @@ def SuperAdmin_current_trainees_payment_add(request, id):
     else:
         return redirect('/')
 
+
 def SuperAdmin_current_trainees_payment_adding(request, id):
     if 'SAdm_id' in request.session:
         if request.session.has_key('SAdm_id'):
@@ -1131,22 +1192,46 @@ def SuperAdmin_current_trainees_payment_adding(request, id):
         else:
             return redirect('/')
         users = User.objects.filter(id=SAdm_id)
+        mems = user_registration.objects.get(id=id)
         if request.method == "POST":
             mem1 = user_registration.objects.get(id=id)
             pay = payment()
-            pay.bank = request.POST.get('bankname')
-            pay.accountnumber = request.POST.get('accnumber')
-            pay.ifse = request.POST.get('ifsecode')
             pay.payment = request.POST.get('amount')
             pay.date = datetime.now()
+            pay.payment_type = request.POST.get('payment_type')
+            pay.date = request.POST.get('payment_date')
+            pay.net_due_date = datetime.strptime(
+                pay.date, '%Y-%m-%d').date() + timedelta(days=30)
             pay.user = mem1
             pay.status = 1
+            mems.reg_end_date = datetime.strptime(
+                pay.date, '%Y-%m-%d').date() + timedelta(days=90)
+            mems.save()
             pay.save()
             msg_success = "payment added successfully"
             return render(request, 'SuperAdmin_current_trainees.html', {'users': users, 'msg_success': msg_success})
     else:
         return redirect('/')
 
+
+def SuperAdmin_current_trainees_payment_verify(request, id):
+    if 'SAdm_id' in request.session:
+        if request.session.has_key('SAdm_id'):
+            SAdm_id = request.session['SAdm_id']
+        else:
+            return redirect('/')
+        users = User.objects.filter(id=SAdm_id)
+        mem2 = payment.objects.get(id=id)
+        mem2.status = 1
+        ct = user_registration.objects.get(id=mem2.user_id)
+        ct.reg_end_date = mem2.date + timedelta(days=90)
+        ct.net_due_date = mem2.date + timedelta(days=30)
+        mem2.save()
+        ct.save()
+        msg_success = "payment Verified successfully"
+        return render(request, 'SuperAdmin_current_trainees_payment.html', {'users': users, 'msg_success': msg_success, 'ct':ct})
+    else:
+        return redirect('/')
 
 def SuperAdmin_current_trainees_payment_update(request, id):
     if 'SAdm_id' in request.session:
@@ -1171,11 +1256,18 @@ def SuperAdmin_current_trainees_payment_edit(request, id):
         users = User.objects.filter(id=SAdm_id)
         if request.method == "POST":
             payed = payment.objects.get(id=id)
-            payed.bank = request.POST.get('bankname')
-            payed.accountnumber = request.POST.get('accnumber')
-            payed.ifse = request.POST.get('ifsecode')
             payed.payment = request.POST.get('amount')
+            payed.payment_type = request.POST.get('payment_type')
+            payed.date = request.POST.get('payment_date')
+            payed.net_due_date = datetime.strptime(
+                payed.date, '%Y-%m-%d').date() + timedelta(days=30)
+            ct = user_registration.objects.get(id=payed.user_id)
+            ct.reg_end_date = datetime.strptime(
+                payed.date, '%Y-%m-%d').date() + timedelta(days=90)
+            ct.net_due_date = datetime.strptime(
+                payed.date, '%Y-%m-%d').date() + timedelta(days=30)
             payed.save()
+            ct.save()
             msg_successupdate = "payment updated successfully"
             return render(request, 'SuperAdmin_current_trainees.html', {'users': users, 'msg_successupdate': msg_successupdate})
     else:
@@ -1527,10 +1619,11 @@ def SuperAdmin_achievements_add_achievements(request):
         msg_success = ''
         if request.method == 'POST':
             Achievement_title = request.POST.get('Achievement_title')
-            Achievement_description = request.POST.get('Achievement_description')
+            Achievement_description = request.POST.get(
+                'Achievement_description')
             Achievement_image = request.FILES['Achievement_image']
             achievement = Achievement(Achievement_title=Achievement_title,
-                                    Achievement_description=Achievement_description, Achievement_image=Achievement_image)
+                                      Achievement_description=Achievement_description, Achievement_image=Achievement_image)
             achievement.save()
             msg_success = "Achievement Added"
             return render(request, "SuperAdmin_achievements_add_achievements.html", {'users': users, 'msg_success': msg_success})
@@ -1679,20 +1772,23 @@ def Trainer_Accsetting(request):
             abc.dateofbirth = request.POST.get('dateofbirth')
             abc.gender = request.POST.get('gender')
             abc.email = request.POST.get('email')
-            abc.mobile = request.POST.get('mobile')
-            abc.alternativeno = request.POST.get('alt_no')
-            abc.pincode = request.POST.get('pincode')
-            abc.district = request.POST.get('district')
-            abc.idproof = request.FILES['id_proof']
-            abc.state = request.POST.get('state')
-            abc.country = request.POST.get('country')
             abc.permanentaddress1 = request.POST.get('address1')
             abc.permanentaddress2 = request.POST.get('address2')
             abc.permanentaddress3 = request.POST.get('address3')
+            abc.native_place = request.POST.get('native_place')
+            abc.pincode = request.POST.get('pincode')
+            abc.district = request.POST.get('district')
+            abc.state = request.POST.get('state')
+            abc.mobile = request.POST.get('mobile')
+            abc.alternativeno = request.POST.get('alt_no')
+            if request.FILES.get('id_proof') is not None:
+                old_img = user_registration.objects.get(id=Tnr_id)
+                os.remove(old_img.idproof.path)
+                abc.idproof = request.FILES.get('id_proof')
             abc.height = request.POST.get('height')
             abc.weight = request.POST.get('weight')
             abc.save()
-            msg_success = "Accounts changed successfully"
+            msg_success = "Data changed successfully"
             return render(request, 'Trainer_Accsetting.html', {'msg_success': msg_success})
         return render(request, 'Trainer_Accsetting.html', {'mem': mem})
     else:
@@ -1798,22 +1894,27 @@ def Trainee_Accsetting(request):
             abb.dateofbirth = request.POST.get('dateofbirth')
             abb.gender = request.POST.get('gender')
             abb.email = request.POST.get('email')
-            abb.mobile = request.POST.get('mobile')
-            abb.alternativeno = request.POST.get('alt_no')
-            abb.pincode = request.POST.get('pincode')
-            abb.district = request.POST.get('district')
-            abb.idproof = request.FILES['id_proof']
-            abb.state = request.POST.get('state')
-            abb.country = request.POST.get('country')
             abb.permanentaddress1 = request.POST.get('address1')
             abb.permanentaddress2 = request.POST.get('address2')
             abb.permanentaddress3 = request.POST.get('address3')
+            abb.native_place = request.POST.get('native_place')
+            abb.pincode = request.POST.get('pincode')
+            abb.district = request.POST.get('district')
+            abb.state = request.POST.get('state')
+            abb.mobile = request.POST.get('mobile')
+            abb.alternativeno = request.POST.get('alt_no')
+            if request.FILES.get('id_proof') is not None:
+                old_img = user_registration.objects.get(id=Tne_id)
+                os.remove(old_img.idproof.path)
+                abb.idproof = request.FILES.get('id_proof')
             abb.height = request.POST.get('height')
             abb.weight = request.POST.get('weight')
             abb.save()
-            msg_success = "Accounts changed successfully"
+            msg_success = "Data updated successfully"
             return render(request, 'Trainee_Accsetting.html', {'msg_success': msg_success})
-        return render(request, 'Trainee_Accsetting.html', {'mem1': mem1})
+        else:
+
+            return render(request, 'Trainee_Accsetting.html', {'mem1': mem1})
     else:
         return redirect('/')
 
@@ -1821,8 +1922,10 @@ def Trainee_Accsetting(request):
 def Trainee_Profile_Imagechange(request, id):
     if request.method == 'POST':
         ab = user_registration.objects.get(id=id)
-        ab.photo = request.FILES['files']
-        ab.save()
+        if request.FILES.get('files') is not None:
+            os.remove(ab.photo.path)
+            ab.photo = request.FILES.get('files')
+            ab.save()
         msg_success = "Profile Picture changed successfully"
         return render(request, 'Trainer_Accsetting.html', {'msg_success': msg_success})
 
@@ -1914,16 +2017,17 @@ def Trainee_payment_save(request):
         mem1 = user_registration.objects.filter(id=Tne_id)
         if request.method == "POST":
             pay = payment()
-            pay.bank = request.POST.get('bankname')
-            pay.accountnumber = request.POST.get('accnumber')
-            pay.ifse = request.POST.get('ifsecode')
             pay.payment = request.POST.get('amount')
             pay.user_id = Tne_id
-            pay.date = datetime.now()
+            pay.date = request.POST.get('payment_date')
+            pay.payment_type = request.POST.get('payment_type')
+            pay.net_due_date = datetime.strptime(
+                pay.date, '%Y-%m-%d').date() + timedelta(days=30)
             pay.save()
-            # d = timedelta(days=30)
-            # mydate = datetime.now() + d
-            return redirect('Trainee_payment_history')
+            msg_success = "Payment added successfully"
+            return render(request, 'Trainee_payment_history.html', {'mem1': mem1, 'msg_success': msg_success})
+        else:
+            return render(request, 'Trainee_payment_history.html', {'mem1': mem1})
 
 # ------------------------------meenu------------------------------
 
@@ -1953,3 +2057,5 @@ def Trainee_workoutvideos1(request, id):
         return render(request, 'Trainee_workoutvideos1.html', {'mem1': mem1, 'new': new, 'data': data})
     else:
         return redirect('/')
+
+

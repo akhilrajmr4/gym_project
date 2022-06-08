@@ -38,7 +38,7 @@
         </button>
 
         <ul class="navbar-nav navbar-nav-right">
-
+          
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{% static 'face1.jpg' %}" alt="profile" />
@@ -128,9 +128,15 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="#">
               <i class="icon-paper menu-icon"></i>
               <span class="menu-title">Certificate</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'SuperAdmin_newreg' %}">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">New joinees</span>
             </a>
           </li>
 

@@ -9,75 +9,61 @@
         <div class="card ">
             <div class="card-body ">
                 <h4 class="card-title">Payment History</h4>
-                <input type="text" class="form-control text-dark" onkeyup="myFunction()" id="search" name="search" autocomplete="off"
-            placeholder="Search...">
+                <input type="text" class="form-control text-dark" id="myInput" name="search" autocomplete="off"
+                    placeholder="Search...">
                 <div class="table-responsive pt-3">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Sl.No</th>
-                                <th>Bank Name</th>
-                                <th>Account No.</th>
-                                <th>IFSC Code</th>
-                                <th>Amount</th>
-                                <th>Date</th>
-                                
+                                <th>Payment Type</th>
+                                <th>Payment Date</th>
+                                <th>Payment</th>
+                                <th>Next Payment Date</th>
+                                <th>Payment Status</th>
+
 
                             </tr>
                         </thead>
                         <tbody id="myTable">
-                                {% for i in pay %}
-                                <tr>
-                                    <td>{{forloop.counter}}</td>
-                                    <td>{{i.bank}}</td>
-                                    <td>{{i.accountnumber}}</td>
-                                    <td>{{i.ifse}}</td>
-                                    <td >{{i.payment}}</td>
-                                    <td>{{i.date|date:'d-m-Y'}}</td>
-                                </tr>
-                                {% endfor %}
+                            {% for i in pay %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.payment_type}}</td>
+                                <td>{{i.date|date:'d-m-Y'}}</td>
+                                <td>{{i.payment}}</td>
+                                <td>{{i.net_due_date|date:'d-m-Y'}}</td>
+                                <td>
+                                    {% if i.status == 0 %}
+                                    <button type="button" class="btn btn-danger btn-fw btn-sm">Pending</button>
+                                    {%else%}
+                                    <button type="button" class="btn btn-success btn-fw btn-sm">Verified</button>
+                                    {%endif%}
+                                </td>
+                            </tr>
+                            {% endfor %}
 
-                            
+
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-  
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
-
-
-    function myFunction() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("search");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
     $(document).ready(function () {
-        $("#search").on("keyup", function () {
+        $("#myInput").on("keyup", function () {
             var value = $(this).val().toLowerCase();
             $("#myTable tr").filter(function () {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
     });
-
-
-
 </script>
 
 
 {% endblock %}
-

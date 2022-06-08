@@ -19,6 +19,8 @@
                 <th>Status</th>
                 <th>Action</th>
                 <th>Update</th>
+                <th>Add To Trainee</th>
+                <th>Payment</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +55,20 @@
                     <div class="btn btn-success btn-sm"><i class="ti-reload pr-2"></i>Update</div>
                   </a>
                 </td>
+                <td>
+                  <a onclick="return confirm('Are you sure ?');" href="{% url 'addtotr' i.id %}">
+                    <button  type="button" class="btn btn-sm btn-success btn-icon-text">
+                      <i class="ti-plus btn-icon-prepend"></i>
+                      Add
+                    </button></a>
+                </td>
+                <td>
+                  <a href="{% url 'SuperAdmin_current_trainees_payment' i.id %}" style="text-decoration: none;">
+                    <button type="submit" class="btn btn-sm btn-primary btn-icon-text">
+                      Payment
+                    </button>
+                  </a>
+                </td>
 
               </tr>
               {% endfor %}
@@ -66,18 +82,18 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js""></script>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src=" //cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 {% if msg_success %}
 <script>
-    Swal.fire({
-        position: 'center',
-        icon: 'success',
-        text: '{{ msg_success }}',
-        showConfirmButton: false,
-        timer: 1500
-    }).then(function () {
-        javascript: history.go(-2);
-    })
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    text: '{{ msg_success }}',
+    showConfirmButton: false,
+    timer: 1500
+  }).then(function () {
+    javascript: history.go(-2);
+  })
 
 </script>
 {% endif %}

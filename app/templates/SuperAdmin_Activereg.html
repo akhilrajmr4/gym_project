@@ -34,7 +34,6 @@
                   <th>Join Date</th>
                   <th>Registration Fee</th>
                   <th>Monthly Fee</th>
-                  <th>Duration</th>
                   <th>Physical Trainer</th>
                   <th>Status</th>
                   <th>Action</th>
@@ -70,13 +69,6 @@
                         style="border: 1px solid #4B49AC; width: 75px;height: 35px; border-radius: 10px;text-align: center;">
                     </td>
 
-                    <td class="text-primary"><a href="" data-toggle="modal" data-target="#exampleModal{{i.id}}"
-                        style="text-decoration: none;">
-                        <button type="button" class="btn btn-sm btn-info btn-icon-text">
-                          <i class="ti-calendar btn-icon-prepend"></i>Dates</button>
-                      </a></td>
-
-
                     <td>
 
                       <select class="badge badge-secondary  text-light" required name="ptrainer">
@@ -100,8 +92,8 @@
 
                     <td>
                       <select class="btn btn-primary btn-sm" name="tstatus">
-                        <option>Active</option>
-                        <option>Resign</option>
+                        <option value="active">Active</option>
+                        <option value="resign" >Resign</option>
                       </select>
                     </td>
                     <td>
@@ -288,7 +280,7 @@
             icon: 'success',
             text: '{{ msg_success }}',
             showConfirmButton: false,
-            timer: 3000
+            timer: 1500
         }).then(function () {
             javascript: history.go(-2);
         })

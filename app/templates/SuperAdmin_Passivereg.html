@@ -35,11 +35,10 @@
                 <th>Email</th>
                 <th>PhoneNo</th>
                 <th>Join Date</th>
-                <th>End Date</th>
-
-                <th>Status</th>
+                <th>Registration End Date</th>
                 <th>Update</th>
                 <th>Renew user</th>
+                <th>Status</th>
 
 
               </tr>
@@ -55,19 +54,20 @@
 
                 <td>{{ i.email }}</td>
                 <td>{{ i.mobile }}</td>
-                <td>{{i.joiningdate|date:"d-m-y" }}</td>
-                <td>{{i.enddate|date:"d-m-y" }}</td>
-                <td> <button onclick="return confirm('Are you sure you ?');" type="button"
-                    class="btn btn-danger btn-fw btn-sm">Resign</button></td>
+                <td>{{i.joiningdate|date:"d-m-Y" }}</td>
+                <td>{{i.reg_end_date|date:"d-m-Y" }}</td>
+
                 <td><a href="{% url 'SuperAdmin_PassiveUpdate' i.id %}">
                     <button type="button" class="btn btn-warning btn-fw btn-sm">Update</button></a></td>
                 <td class="text-primary">
                   <form class="forms-sample" action="{% url 'PassiveDates' i.id %}" method="post"
                     enctype="multipart/form-data">
                     {% csrf_token %}
-                    <button onclick="return confirm('Are you sure you ?');" type="submit" class="btn btn-primary btn-fw btn-sm">Renew</button>
+                    <button onclick="return confirm('Are you sure you ?');" type="submit"
+                      class="btn btn-primary btn-fw btn-sm">Renew</button>
                   </form>
                 </td>
+                <td> <button type="button" class="btn btn-danger btn-fw btn-sm">Resign</button></td>
               </tr>
 
 

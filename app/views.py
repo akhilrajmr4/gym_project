@@ -1712,7 +1712,7 @@ def Trainer_Trainees_card(request):
         Act_count = user_registration.objects.filter(designation=Traine).filter(
             status="active").filter(Trainer_id=Tnr_id).count()
         Res_count = user_registration.objects.filter(
-            designation=Traine).filter(status="resign").count()
+            Trainer_id=Tnr_id).filter(status="resign").count()
         return render(request, 'Trainer_Trainees_card.html', {'mem': mem, 'Act_count': Act_count, 'Res_count': Res_count})
     else:
         return redirect('/')

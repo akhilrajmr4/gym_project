@@ -25,7 +25,7 @@ class batch(models.Model):
 
 
 class user_registration(models.Model):
-    designation = models.ForeignKey(designation, on_delete=models.DO_NOTHING,
+    designation = models.ForeignKey(designation, on_delete=models.CASCADE,
                                     related_name='userregistrationdesignation', null=True, blank=True)
     fullname = models.CharField(max_length=240, null=True)
     dateofbirth = models.DateField(
@@ -48,10 +48,7 @@ class user_registration(models.Model):
     photo = models.FileField(upload_to='images/', null=True, blank=True)
     joiningdate = models.DateField(
         auto_now_add=False, auto_now=False,  null=True, blank=True)
-    startdate = models.DateField(
-        auto_now_add=False, auto_now=False,  null=True, blank=True)
-    enddate = models.DateField(
-        auto_now_add=False, auto_now=False,  null=True, blank=True)
+
     status = models.CharField(max_length=240, null=True, default='0')
     rate = models.CharField(max_length=200, null=True, default='')
     Trainer_id = models.IntegerField(default='0', null=True, blank=True)
@@ -80,7 +77,7 @@ class workout(models.Model):
 
 class tutorial(models.Model):
     Workout = models.ForeignKey(
-        workout, on_delete=models.CASCADE, related_name='subjects')
+        workout, on_delete=models.SET_NULL, related_name='subjects', null=True)
     video = models.FileField(upload_to="images/", blank=True, null=True)
 
 
@@ -96,7 +93,7 @@ class Machine(models.Model):
 
 class Category(models.Model):
     cate_type = models.ForeignKey(
-        Machine, on_delete=models.CASCADE, related_name='machinenames')
+        Machine, on_delete=models.SET_NULL, related_name='machinenames', null=True)
     cate_name = models.CharField(max_length=200)
     cate_details = models.CharField(max_length=200)
     cate_image = models.ImageField(upload_to="images/", null=True)
@@ -122,7 +119,7 @@ class expense(models.Model):
 
 class payment(models.Model):
     user = models.ForeignKey(
-        user_registration, on_delete=models.DO_NOTHING, null=True, blank=True)
+        user_registration, on_delete=models.SET_NULL, null=True, blank=True)
     date = models.DateField(
         auto_now_add=False, auto_now=False,  null=True, blank=True)
     payment = models.CharField(max_length=240, null=True)

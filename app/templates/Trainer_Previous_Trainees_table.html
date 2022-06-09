@@ -26,7 +26,7 @@
             </thead>
             <tbody>
               {% for i in traine %}
-              <tr data-href="{% url 'Trainer_Previous_Trainees_profile' i.id %}">
+              <tr data-href="{% url 'Trainer_Current_Trainees_profile' i.id %}">
                 <td>{{ forloop.counter }}</td>
                 <td><img src="{{ i.photo.url }}" width="100" height="100" class="rounded-circle">&nbsp;&nbsp;
                   <span>{{ i.fullname }}</span></td>

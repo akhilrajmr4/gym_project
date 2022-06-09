@@ -124,7 +124,7 @@ urlpatterns = [
     re_path(r'^superadmin_tutorialpage/$',views.superadmin_tutorialpage,name='superadmin_tutorialpage'),
     re_path(r'^workout1/$',views.workout1,name='workout1'),
     re_path(r'^superadmin_addtutorial/$',views.superadmin_addtutorial,name='superadmin_addtutorial'),
-    re_path(r'^superadmin_ChestDetailView(?P<i_id>[0-9]+)/$',views.superadmin_ChestDetailView,name='superadmin_ChestDetailView'),
+    re_path(r'^superadmin_ChestDetailView/(?P<i_id>[0-9]+)/$',views.superadmin_ChestDetailView,name='superadmin_ChestDetailView'),
     re_path(r'^deletevideo(?P<i_id>[0-9]+)/$',views.deletevideo,name='deletevideo'),
 
     #------------------------------Nidhun------------------------------ 

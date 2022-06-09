@@ -26,11 +26,12 @@
 <body>
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row" style="background-color: #fff;">
       <div class=" navbar-brand-wrapper ">
-        <a class=" " href="Trainee_index.html"></a>
-        <h3 class="n pt-3 pl-4"><b><i>GYM</i></b></h3>
-        <a class="navbar-brand brand-logo" href=""></a>
+        <!-- <a class=" " href="Trainer_index.html"><img src="{% static 'logo3.jpg' %}" class="" width="50" height="50"/></a>Gym -->
+        <a class=" " href="Trainer_index.html"></a>
+        <h3 class="n pt-3 pl-4">&nbsp;&nbsp;<b><i>GYM</i></b></h3>
+        <a class="navbar-brand brand-logo" href="#"></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -67,10 +68,6 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_settings-panel.html -->
-
-      <!-- partial -->
-      <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
@@ -121,12 +118,12 @@
               <span class="menu-title">Machine</span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href='{% url "SuperAdmin_achievement_card" %}'>
               <i class="icon-contract menu-icon"></i>
               <span class="menu-title">Achievement</span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="icon-paper menu-icon"></i>

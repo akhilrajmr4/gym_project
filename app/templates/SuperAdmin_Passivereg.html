@@ -61,10 +61,13 @@
                     class="btn btn-danger btn-fw btn-sm">Resign</button></td>
                 <td><a href="{% url 'SuperAdmin_PassiveUpdate' i.id %}">
                     <button type="button" class="btn btn-warning btn-fw btn-sm">Update</button></a></td>
-                <td class="text-primary"><a href="" data-toggle="modal" data-target="#exampleModal{{i.id}}"
-                    style="text-decoration: none;">
-                    <button type="button" class="btn btn-primary btn-fw btn-sm">Renew</button>
-                  </a></td>
+                <td class="text-primary">
+                  <form class="forms-sample" action="{% url 'PassiveDates' i.id %}" method="post"
+                    enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button onclick="return confirm('Are you sure you ?');" type="submit" class="btn btn-primary btn-fw btn-sm">Renew</button>
+                  </form>
+                </td>
               </tr>
 
 

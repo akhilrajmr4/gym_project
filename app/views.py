@@ -44,7 +44,7 @@ def login(request):
 
                 member = user_registration.objects.get(
                     email=request.POST['email'], password=request.POST['password'])
-                dd = (member.reg_end_date - datetime.now().date()).days
+                dd = (member.net_due_date - datetime.now().date()).days
                 if (dd >= 0):
                     request.session['Tne_id'] = member.designation_id
                     request.session['usernamets1'] = member.fullname
@@ -899,7 +899,9 @@ def Passive_traineeupdate(request, id):
             tr.permanentaddress1 = request.POST['trad3']
             trr = user_registration.objects.get(id=id)
             try:
-                trr.photo = request.FILES['trphoto']
+                if request.FILES.get('trphoto') is not None:
+                    os.remove(trr.photo.path)
+                    trr.photo = request.FILES.get('trphoto')
                 trr.save()
                 msg_success = "Updated successfully"
             except:
@@ -919,9 +921,13 @@ def PassiveDates(request, id):
         users = User.objects.filter(id=SAdm_id)
         if request.method == "POST":
             dt = user_registration.objects.get(id=id)
-            dt.startdate = request.POST['sdate']
-            dt.enddate = request.POST['edate']
-            dt.status = "Active"
+            # dt.startdate = request.POST['sdate']
+            # dt.enddate = request.POST['edate']
+            
+            dt.joiningdate = datetime.now()  
+            dt.reg_end_date = datetime.now()  + timedelta(days=90)
+            dt.net_due_date = datetime.now()  + timedelta(days=30)
+            dt.status = "active"
             dt.save()
             return redirect('SuperAdmin_Passivereg')
     else:
@@ -1008,7 +1014,9 @@ def SuperAdmin_activetrainer_update_save(request, id):
         trainer.permanentaddress2 = request.POST.get('ad2')
         trainer.permanentaddress3 = request.POST.get('ad3')
         try:
-            trainer.photo = request.FILES['pic']
+            if request.FILES.get('pic') is not None:
+                os.remove(trainer.photo.path)
+                trainer.photo = request.FILES.get('pic')
         except:
             pass
         trainer.save()
@@ -1060,7 +1068,10 @@ def SuperAdmin_resignedtrainer_update_save(request, id):
         trainer.address2 = request.POST.get('ad2')
         trainer.address3 = request.POST.get('ad3')
         try:
-            trainer.photo = request.FILES['pic']
+            if request.FILES.get('pic') is not None:
+                os.remove(trainer.photo.path)
+                trainer.photo = request.FILES.get('pic')
+
         except:
             pass
         trainer.save()
@@ -1206,6 +1217,8 @@ def SuperAdmin_current_trainees_payment_adding(request, id):
             pay.status = 1
             mems.reg_end_date = datetime.strptime(
                 pay.date, '%Y-%m-%d').date() + timedelta(days=90)
+            mems.net_due_date = datetime.strptime(
+                pay.date, '%Y-%m-%d').date() + timedelta(days=30)
             mems.save()
             pay.save()
             msg_success = "payment added successfully"
@@ -1229,9 +1242,10 @@ def SuperAdmin_current_trainees_payment_verify(request, id):
         mem2.save()
         ct.save()
         msg_success = "payment Verified successfully"
-        return render(request, 'SuperAdmin_current_trainees_payment.html', {'users': users, 'msg_success': msg_success, 'ct':ct})
+        return render(request, 'SuperAdmin_current_trainees_payment.html', {'users': users, 'msg_success': msg_success, 'ct': ct})
     else:
         return redirect('/')
+
 
 def SuperAdmin_current_trainees_payment_update(request, id):
     if 'SAdm_id' in request.session:
@@ -2057,5 +2071,3 @@ def Trainee_workoutvideos1(request, id):
         return render(request, 'Trainee_workoutvideos1.html', {'mem1': mem1, 'new': new, 'data': data})
     else:
         return redirect('/')
-
-

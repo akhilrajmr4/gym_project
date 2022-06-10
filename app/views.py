@@ -44,16 +44,21 @@ def login(request):
 
                 member = user_registration.objects.get(
                     email=request.POST['email'], password=request.POST['password'])
-                dd = (member.net_due_date - datetime.now().date()).days
-                if (dd >= 0):
-                    request.session['Tne_id'] = member.designation_id
-                    request.session['usernamets1'] = member.fullname
-                    request.session['Tne_id'] = member.id
-                    return redirect('Trainee_Dashboard')
-                else:
+                if member.net_due_date == None:
                     context = {
-                        'msg_error': 'Your registration End. Please renew registration'}
+                        'msg_error': 'Please contact admin to verify account and pay first payment'}
                     return render(request, 'login.html', context)
+                else:
+                    dd = (member.net_due_date - datetime.now().date()).days
+                    if (dd >= 0):
+                        request.session['Tne_id'] = member.designation_id
+                        request.session['usernamets1'] = member.fullname
+                        request.session['Tne_id'] = member.id
+                        return redirect('Trainee_Dashboard')
+                    else:
+                        context = {
+                            'msg_error': 'Your registration End. Please renew registration'}
+                        return render(request, 'login.html', context)
 
             else:
                 context = {'msg_error': 'Invalid data'}
@@ -842,6 +847,7 @@ def Active_traineeaccept(request, id):
             return redirect('/')
         users = User.objects.filter(id=SAdm_id)
         user = user_registration.objects.get(id=id)
+        user.select_status = 1
         user.select_status = 1
         user.save()
         msg_success = "Accept successfully"

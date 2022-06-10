@@ -25,7 +25,9 @@ SECRET_KEY = 'django-insecure-@4n%&!@&&81p8*qmswfgac@!w5@)m=3zbdz-l@k3p&p&iue&8s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'gymworld.herokuapp.com', 'localhost', '127.0.0.1'
+]
 
 
 # Application definition
@@ -75,17 +77,22 @@ WSGI_APPLICATION = 'Gym_Main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'gym',
+#         'USER':'root',
+#         'PASSWORD':'',
+#         'HOST':'localhost',
+#         'PORT':'3306',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'gym',
-        'USER':'root',
-        'PASSWORD':'',
-        'HOST':'localhost',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators

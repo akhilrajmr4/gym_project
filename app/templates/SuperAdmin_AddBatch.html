@@ -45,20 +45,17 @@
                             <input type="time" class="form-control" id="exampleInputUsername2" name="totime" style="color:inherit;" autocomplete="off">
                         </div>
                     </div>
-
-                        <br>
-                        <br>
-
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <center>
+                                <button type="submit" class="btn btn-success btn-icon-text mb-4">SUBMIT</button>
+                                <button type="button" class="btn btn-info btn-icon-text mb-4" onclick=" javascript: history.go(-1);">BACK</button>
+                            </center>
+                        </div>
                     </div>
-                    <br>
-                    <br>
-                    <br>
 
                     <div>
-                        <center>
-                            <button type="submit" class="btn btn-success btn-icon-text mb-4">SUBMIT</button>
-                            <a href="{% url 'SuperAdmin_Batch_Cards' %}" class="btn btn-info mb-4"> BACK</a>
-                        </center>
+                      
                     </div>
                 </form>
             </div>
@@ -86,7 +83,8 @@
             position: 'center',
             icon: 'success',
             text: '{{ msg_success }}',
-            showConfirmButton: false
+            showConfirmButton: false,
+            timer: 1500
         }).then(function () {
             javascript: history.go(-2);
         })

@@ -75,7 +75,7 @@ def reset_password(request):
         access_user_data = user_registration.objects.filter(
             email=email_id).exists()
         if access_user_data:
-            _user = user_registration.objects.filter(email=email_id)
+            _user = user_registration.objects.get(email=email_id)
             password = random.SystemRandom().randint(100000, 999999)
 
             _user.password = password
@@ -336,7 +336,7 @@ def SuperAdmin_UpdateBatchsave(request, id):
             a.save()
             msg_success = "Batch updated successfully"
             Batch = batch.objects.all()
-        return render(request, 'SuperAdmin_Batch_Cards.html', {'msg_success': msg_success, 'users': users, 'Batch': Batch})
+        return render(request, 'SuperAdmin_UpdateBatch.html', {'msg_success': msg_success, 'users': users, 'Batch': Batch})
     else:
         return redirect('/')
 
@@ -765,7 +765,7 @@ def addtopt(request, id):
             return redirect('/')
         users = User.objects.filter(id=SAdm_id)
         user = user_registration.objects.get(id=id)
-        trainer = designation.objects.get(designation='trainer')
+        trainer = designation.objects.get(designation='Trainer')
         user.designation = trainer
         user.save()
         return redirect('SuperAdmin_Activereg')

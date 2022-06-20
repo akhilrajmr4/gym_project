@@ -21,7 +21,7 @@
                         </label>
                         <div class="col-sm-9">
                             <select class="form-control" id="batch" style="color:black;" name="batch" required>
-                             <option selected="true" disabled="disabled" value=""></option>
+                            <option selected="true" value="{{var1.batch}}">{{var1.batch}}</option>
                             
                             <option value="Morning">Morning</option>
                             <option value="Afternoon">Afternoon</option>
@@ -35,7 +35,7 @@
                             FromTime
                         </label>
                         <div class="col-sm-9">
-                            <input type="time" class="form-control" id="exampleInputUsername2"  name="fromtime" style="color:inherit;" autocomplete="off" value="{{var1.fromtime}}">
+                            <input type="time" class="form-control" id="exampleInputUsername2"  name="fromtime" style="color:inherit;"  value="{{var1.fromtime|time:'H:i'}}">
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                             ToTime
                         </label>
                         <div class="col-sm-9">
-                            <input type="time" class="form-control" id="exampleInputUsername2" name="totime" style="color:inherit;" autocomplete="off" value="{{var1.totime}}">
+                            <input type="time" class="form-control" id="exampleInputUsername2" name="totime" style="color:inherit;" autocomplete="off" value="{{var1.totime|time:'H:i'}}">
                         </div>
                     </div>
 
@@ -89,9 +89,9 @@
             icon: 'success',
             text: '{{ msg_success }}',
             showConfirmButton: false,
-            timer: 3000
+            timer: 1500
         }).then(function () {
-            javascript: history.go(-2);
+            javascript: history.go(-3);
         })
         
     </script>

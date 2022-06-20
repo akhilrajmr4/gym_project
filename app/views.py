@@ -863,7 +863,7 @@ def SuperAdmin_Passivereg(request):
         else:
             return redirect('/')
         users = User.objects.filter(id=SAdm_id)
-        trainee = designation.objects.get(designation='trainee')
+        trainee = designation.objects.get(designation='Trainee')
         user = user_registration.objects.filter(
             designation=trainee).filter(status="resign" or "Resign")
         return render(request, 'SuperAdmin_Passivereg.html', {'users': users, 'user_registration': user})
